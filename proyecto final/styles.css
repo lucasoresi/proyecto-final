@@ -210,13 +210,27 @@ footer{
 /*  MENU  */
 
 #menu-contenedor{
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
     width: 80%;
     margin-top: 5rem;
     flex-wrap: wrap;
     text-align: center;
+    align-items: center;
+    justify-content: center;
 }
 
+.menu-title{
+    text-align: center;
+    grid-column: 3/8;
+}
+.p-menu{
+    grid-column: 2/9;
+}
+.galeria{
+    border: 1px solid black;
+    grid-column: 1/-1;
+}
 
 
 

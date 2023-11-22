@@ -1,3 +1,11 @@
+let hora = document.querySelector(".hour")
+let horaLocal = () => {
+    hora.innerHTML = new Date().toLocaleString()
+
+}
+setInterval(horaLocal, 1000)
+
+
 let formularioContacto = document.getElementById("contact-form");
 let nombre = document.querySelector(".nombre");
 let telefono = document.querySelector(".phone-number");
