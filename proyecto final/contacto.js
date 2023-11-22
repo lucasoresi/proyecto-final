@@ -1,7 +1,7 @@
 let formularioContacto = document.getElementById("contact-form");
-let nombre = document.querySelector(".nombre").value;
-let telefono = document.querySelector(".phone-number").value;
-let comensales = document.querySelector(".comensales").value
+let nombre = document.querySelector(".nombre");
+let telefono = document.querySelector(".phone-number");
+let comensales = document.querySelector(".comensales");
 let errorNombre = document.querySelector(".errorNombre")
 let errorTelefono = document.querySelector(".errorTelefono")
 let errorComensales = document.querySelector(".errorComensales")
@@ -10,32 +10,33 @@ let errorComensales = document.querySelector(".errorComensales")
 formularioContacto.addEventListener("submit", (e) => {
     e.preventDefault();
 
-    let entrar = false;
     errorNombre.innerText = ""
     errorComensales.innerText = ""
     errorTelefono.innerText = ""
+    let entrar = false;
 
-    if(nombre.length < 3){
+    if(nombre.value.length < 3){
         errorNombre.innerText = "El nombre debe tener al menos 3 letras."
         entrar = true;
     }
 
-    if(typeof telefono !== "number"){
+    if(telefono.value.length < 3){
         errorTelefono.innerText = "Debes registrar un numero."
         entrar = true;
     }
 
-    if(typeof comensales !== "number"){
+    if(comensales.value.length === 0){
         errorComensales.innerText = "Indique cuantas personas asistiran."
         entrar = true;
     }
 
-    if(entrar){
+    if(!entrar){
+        
         
         Swal.fire({
             position: "top",
             icon: "success",
-            title: `Bienvenido ${nombre}`,
+            title: `Bienvenido ${nombre.value}`,
             showConfirmButton: false,
             timer: 1500
           });
