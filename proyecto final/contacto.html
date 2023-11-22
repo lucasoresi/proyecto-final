@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <ul class="header-items" id="navegacion">
+            <li><a href="./index.html">Inicio</a></li>
+            <li><a href="./menu.html">Menu</a></li>
+            <li><a href="#">Contactanos</a></li>
+        </ul>
+
+        <p class="header-items hora"><b class="hour"></b></p>
+    </header>
+
+
+    <div id="contact-container">
+        <div class="contact-item">
+            <img class="image-contact" src="./assets/contact-image-dos.jpg" alt="image-food">
+        </div>
+        <div class="contact-item">
+            <h1 class="title-form">Hace tu reserva!</h1>
+            <form action="" id="contact-form">
+                <input type="text" class="contacto-form-item nombre form-item" placeholder="Nombre">
+                <p class="errorFrm errorNombre"></p>
+                <input type="number" class="contacto-form-item phone-number form-item" placeholder="Numero de telefono">
+                <p class="errorFrm errorTelefono"></p>
+                <input type="number" class="contacto-form-item comensales form-item" placeholder="numero de comensales">
+                <p class="errorFrm errorComensales"></p>
+                <input type="date" class="fecha form-item" required>
+                <input type="time" class="horario form-item" required>
+                <input type="submit" class="submitC form-item">
+                <input type="reset" class="resetC form-item">
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <p class="parrafo-footer item-footer">¡Regístrate y recibe noticias y mucho más!</p>
+
+        <form action="" id="formulario" class="item-footer" >
+            <input class="email-input-footer" type="email" placeholder="email ...">
+            <input class="button-footer" type="submit" value="Suscribite">
+        </form>
+
+    </footer>
+    <script defer src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script defer src="./contacto.js"></script>
+</body>
+</html>
