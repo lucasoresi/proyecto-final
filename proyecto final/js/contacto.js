@@ -15,6 +15,7 @@ let errorTelefono = document.querySelector(".errorTelefono")
 let errorComensales = document.querySelector(".errorComensales")
 
 
+// AUTENTICACION DEL FORMULARIO DE CONTACTO.
 formularioContacto.addEventListener("submit", (e) => {
     e.preventDefault();
 

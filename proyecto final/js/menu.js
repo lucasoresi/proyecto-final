@@ -6,6 +6,7 @@ let horaLocal = () => {
 }
 setInterval(horaLocal, 1000)
 
+// TRAER INFO MEDIANTE API, NO ENCOTRE UNA QUE TERNGA ESPECIFICAMENTE LO QUE QUERIA, POR ESO ELEGI ESA.
 const galeriaContenedor = document.querySelector(".galeria-contenedor")
 
 async function getData(){
@@ -28,4 +29,4 @@ async function getData(){
     });
 }
 
-getData()
+getData();
