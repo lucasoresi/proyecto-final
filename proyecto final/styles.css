@@ -211,7 +211,7 @@ footer{
 
 #menu-contenedor{
     display: grid;
-    grid-template-columns: repeat(10, 1fr);
+    
     width: 80%;
     margin-top: 5rem;
     flex-wrap: wrap;
@@ -222,14 +222,29 @@ footer{
 
 .menu-title{
     text-align: center;
-    grid-column: 3/8;
+    
 }
 .p-menu{
-    grid-column: 2/9;
+    margin-bottom: 4rem;
 }
 .galeria{
     border: 1px solid black;
-    grid-column: 1/-1;
+    width: 100%;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.galeria > img{
+    width: 100%;
+}
+.galeria > h3{
+    font-size: 1.5rem;
+    padding: 30px 10px;
+}
+.galeria-contenedor{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    gap: 20px;
 }
 
 

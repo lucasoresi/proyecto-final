@@ -1,23 +1,31 @@
+//   HEADER
+let hora = document.querySelector(".hour")
+let horaLocal = () => {
+    hora.innerHTML = new Date().toLocaleString()
 
-let traerProductos = async () => {
-    let URL = "https://jsonplaceholder.typicode.com/photos";
-    let errorContenido = `<h2>Error :( </h2>`
-
-    let aMostrar;
-
-    try{
-        let peticion = await fetch(URL)
-        let respuesta = await peticion.json();
-
-        respuesta.forEach(post => {
-            aMostrar += `
-                ${post.URL}
-
-            `
-        });
-    }catch(err){
-        console.log(errorContenido, err)
-    }finally{
-
-    }
 }
+setInterval(horaLocal, 1000)
+
+const galeriaContenedor = document.querySelector(".galeria-contenedor")
+
+async function getData(){
+    const respuesta = await fetch("https://jsonplaceholder.typicode.com/photos")
+    const fotos = await respuesta.json();
+    
+    fotos.forEach( foto => {
+
+        const card = document.createElement("div")
+        card.className = "galeria"
+
+        const imagen = document.createElement("img")
+        imagen.src = foto.url;
+
+        const titulo = document.createElement("h3")
+        titulo.textContent = foto.title
+
+        card.append(imagen, titulo)
+        galeriaContenedor.append(card)
+    });
+}
+
+getData()
