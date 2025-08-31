@@ -32,6 +32,14 @@ export default {
 					DEFAULT: 'hsl(var(--secondary))',
 					foreground: 'hsl(var(--secondary-foreground))'
 				},
+				trust: {
+					DEFAULT: 'hsl(var(--trust))',
+					foreground: 'hsl(var(--trust-foreground))'
+				},
+				warmth: {
+					DEFAULT: 'hsl(var(--warmth))',
+					foreground: 'hsl(var(--warmth-foreground))'
+				},
 				destructive: {
 					DEFAULT: 'hsl(var(--destructive))',
 					foreground: 'hsl(var(--destructive-foreground))'
@@ -66,7 +74,19 @@ export default {
 			borderRadius: {
 				lg: 'var(--radius)',
 				md: 'calc(var(--radius) - 2px)',
-				sm: 'calc(var(--radius) - 4px)'
+				sm: 'calc(var(--radius) - 4px)',
+				xl: 'calc(var(--radius) + 4px)',
+				'2xl': 'calc(var(--radius) + 8px)'
+			},
+			fontFamily: {
+				sans: ['Inter', 'system-ui', 'sans-serif'],
+				serif: ['Georgia', 'serif']
+			},
+			spacing: {
+				'18': '4.5rem',
+				'88': '22rem',
+				'100': '25rem',
+				'112': '28rem'
 			},
 			keyframes: {
 				'accordion-down': {
