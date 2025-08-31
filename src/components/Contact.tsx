@@ -1,10 +1,15 @@
 import { useState } from 'react';
-import { MapPin, Phone, Mail, MessageCircle, Clock, Send } from 'lucide-react';
+import { format } from 'date-fns';
+import { es } from 'date-fns/locale';
+import { MapPin, Phone, Mail, MessageCircle, Clock, Send, CalendarIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Calendar } from '@/components/ui/calendar';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { useToast } from '@/hooks/use-toast';
+import { cn } from '@/lib/utils';
 
 const Contact = () => {
   const { toast } = useToast();
@@ -12,7 +17,8 @@ const Contact = () => {
     name: '',
     email: '',
     phone: '',
-    message: ''
+    message: '',
+    date: undefined as Date | undefined
   });
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -29,11 +35,12 @@ const Contact = () => {
       title: "Mensaje enviado",
       description: "Nos pondremos en contacto contigo pronto.",
     });
-    setFormData({ name: '', email: '', phone: '', message: '' });
+    setFormData({ name: '', email: '', phone: '', message: '', date: undefined });
   };
 
   const openWhatsApp = () => {
-    const message = `Hola, me llamo ${formData.name || '[Nombre]'} y me gustaría agendar una consulta psicológica.`;
+    const dateText = formData.date ? ` para el día ${format(formData.date, 'dd/MM/yyyy', { locale: es })}` : '';
+    const message = `Hola, me llamo ${formData.name || '[Nombre]'} y me gustaría agendar una consulta psicológica${dateText}.`;
     window.open(`https://wa.me/5491234567890?text=${encodeURIComponent(message)}`, '_blank');
   };
 
@@ -80,8 +87,8 @@ const Contact = () => {
           <Card className="gentle-shadow bg-card border-border/50">
             <CardHeader>
               <CardTitle className="text-card-foreground flex items-center">
-                <Send className="w-5 h-5 mr-2 text-primary" />
-                Envía tu consulta
+                <CalendarIcon className="w-5 h-5 mr-2 text-primary" />
+                Agendar Consulta
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -135,6 +142,36 @@ const Contact = () => {
                 </div>
 
                 <div>
+                  <label className="block text-sm font-medium text-card-foreground mb-2">
+                    Fecha preferida
+                  </label>
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <Button
+                        variant="outline"
+                        className={cn(
+                          "w-full justify-start text-left font-normal bg-background",
+                          !formData.date && "text-muted-foreground"
+                        )}
+                      >
+                        <CalendarIcon className="mr-2 h-4 w-4" />
+                        {formData.date ? format(formData.date, "PPP", { locale: es }) : <span>Seleccionar fecha</span>}
+                      </Button>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-auto p-0" align="start">
+                      <Calendar
+                        mode="single"
+                        selected={formData.date}
+                        onSelect={(date) => setFormData({ ...formData, date })}
+                        disabled={(date) => date < new Date() || date.getDay() === 0}
+                        initialFocus
+                        className="pointer-events-auto"
+                      />
+                    </PopoverContent>
+                  </Popover>
+                </div>
+
+                <div>
                   <label htmlFor="message" className="block text-sm font-medium text-card-foreground mb-2">
                     Mensaje *
                   </label>
@@ -153,7 +190,7 @@ const Contact = () => {
                 <div className="flex flex-col sm:flex-row gap-3">
                   <Button type="submit" className="bg-primary hover:bg-primary/90 flex-1">
                     <Send className="w-4 h-4 mr-2" />
-                    Enviar Mensaje
+                    Enviar Consulta
                   </Button>
                   <Button
                     type="button"
@@ -162,7 +199,7 @@ const Contact = () => {
                     className="border-2 border-green-500 text-green-600 hover:bg-green-500 hover:text-white flex-1"
                   >
                     <MessageCircle className="w-4 h-4 mr-2" />
-                    WhatsApp
+                    Agendar por WhatsApp
                   </Button>
                 </div>
               </form>

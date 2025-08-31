@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Menu, X, Phone, MessageCircle } from 'lucide-react';
+import { Menu, X, MessageCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const Header = () => {
@@ -50,15 +50,6 @@ const Header = () => {
           {/* Contact Actions */}
           <div className="hidden md:flex items-center space-x-3">
             <Button
-              variant="outline"
-              size="sm"
-              onClick={() => window.open('tel:+5491234567890', '_self')}
-              className="border-trust text-trust hover:bg-trust hover:text-trust-foreground"
-            >
-              <Phone className="w-4 h-4 mr-2" />
-              Llamar
-            </Button>
-            <Button
               size="sm"
               onClick={() => window.open('https://wa.me/5491234567890?text=Hola, me gustaría agendar una consulta', '_blank')}
               className="bg-primary hover:bg-primary/90"
@@ -96,15 +87,6 @@ const Header = () => {
                 </button>
               ))}
               <div className="flex flex-col space-y-2 pt-4 border-t border-border">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => window.open('tel:+5491234567890', '_self')}
-                  className="border-trust text-trust hover:bg-trust hover:text-trust-foreground w-full justify-start"
-                >
-                  <Phone className="w-4 h-4 mr-2" />
-                  Llamar
-                </Button>
                 <Button
                   size="sm"
                   onClick={() => window.open('https://wa.me/5491234567890?text=Hola, me gustaría agendar una consulta', '_blank')}
