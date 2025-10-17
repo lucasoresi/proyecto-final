@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import supabase from '@/config/spabaseClient';
 import { set } from "date-fns";
 import { toast } from "@/components/ui/use-toast";
-import { se } from "date-fns/locale";
+import { se, tr } from "date-fns/locale";
 import { useAuth } from "./auth/AuthProvider";
 
 const Register = () => {
@@ -12,50 +12,86 @@ const Register = () => {
     const [password, setPassword] = useState("");
     const [name, setName] = useState("");
     const [error, setError] = useState(false);
+    const [errorexist, setErrorexist] = useState(false);
     const navigate = useNavigate();
     const auth = useAuth();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if(name === "" || email === "" || password === "") {
-            setError(true);
-            toast({
-            title: "Error",
-            description: "Hubo un error al iniciar sesión. Por favor, intentá nuevamente.",
+        try {
+            if(name === "" || email === "" || password === "") {
+                setErrorexist(false);
+                setError(true);
+                toast({
+                title: "Error",
+                description: "Hubo un error al iniciar sesión. Por favor, intentá nuevamente.",
+                });
+                return;
+            }
+
+            const {data: existingUser, error: fetchError} = await supabase
+            .from('usuarios')
+            .select('email')
+            .eq('email', email)
+            .maybeSingle();
+
+            if (fetchError) {
+                setError(true);
+                toast({
+                    title: "Error",
+                    description: "Hubo un error al verificar el email. Por favor, intentá nuevamente.",
+                });
+                return;
+            }
+            if (existingUser){
+                setError(false);
+                setErrorexist(true);
+
+                
+                toast({
+                    title: "Error",
+                    description: "El email ya está registrado. Por favor, usá otro.",
+                });
+                return;
+            }
+            
+
+            const {data, error} = await supabase
+            .from('usuarios')
+            .insert([{email, password, name}])
+            .select(); 
+            localStorage.setItem('userName', data[0].name);           
+            if (error) {
+                setError(true);
+                toast({
+                title: "Error",
+                description: "Hubo un error al iniciar sesión. Por favor, intentá nuevamente.",
             });
             return;
-        }
-        const {data, error} = await supabase
-        .from('usuarios')
-        .insert([{email, password, name}])
-        .select();
-        if (error) {
-            setError(true);
-            toast({
-            title: "Error",
-            description: "Hubo un error al iniciar sesión. Por favor, intentá nuevamente.",
-        });
-        return;
-        }
-        if (data) {
+            }
+            if (data) {
             setError(false);
-            console.log(data);
             auth.isAuthenticated = true;
             navigate("/main");
             toast({
-            title: "Éxito",
-            description: "Te has registrado correctamente.",
-        });
-            
-        }
+                title: "Éxito",
+                description: "Te has registrado correctamente.",
+            });
+            }
+        
+        }catch (err) {
+            toast({
+                title: "Error",
+                description: "Hubo un error al iniciar sesión. Por favor, intentá nuevamente.",
+            });
+            return;
     }
-    useEffect(() => {
-        console.log(auth.isAuthenticated);
-    }, []);
-
+    };
 
 
     return(
+
+    
     <section className="register-page">
         <div className="register-card">
         <h2 className="register-title">Registrarse</h2>
@@ -94,10 +130,12 @@ const Register = () => {
                 placeholder="Ingresá tu contraseña"
             />
             </div>
-
+            {errorexist && (
+            <p className="error-msg">El email ya está registrado. Por favor, usá otro.</p>
+            )}
             {error && (
             <p className="error-msg">Por favor completá todos los campos.</p>
-            )}
+            )} 
 
             <button type="submit" className="btn-submit" >
             Entrar

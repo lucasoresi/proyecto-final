@@ -54,7 +54,6 @@ const Login = () => {
                 }
 
                 auth.isAuthenticated = true;
-                localStorage.setItem('userEmail', data.email);
                 localStorage.setItem('userName', data.name ?? '');
                 navigate("/main");
                 toast({
