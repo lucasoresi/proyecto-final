@@ -1,11 +1,13 @@
-import { useState } from 'react';
+import { useState, useEffect} from 'react';
 import { Menu, X, MessageCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useNavigate } from 'react-router-dom';
+import supabase from '@/config/spabaseClient';
 
-const Header = () => {
+const Header2 = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
+  const [userName, setUserName] = useState<string | null>(null);
   
   const navigation = [
     { name: 'Inicio', href: '#home' },
@@ -22,7 +24,25 @@ const Header = () => {
       setIsMenuOpen(false);
     }
   };
+    useEffect(() => {
+      const nameFromStorage = localStorage.getItem('userName');
+      const emailFromStorage = localStorage.getItem('userEmail');
+      if (nameFromStorage) {
+        setUserName(nameFromStorage || null);
+        return;
+      }
 
+      if (emailFromStorage) {
+        (async () => {
+          const { data, error } = await supabase
+            .from('usuarios')
+            .select('name')
+            .eq('email', emailFromStorage)
+            .maybeSingle();
+          if (!error && data?.name) setUserName(data.name);
+        })();
+      }
+    }, []);  
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
       <nav className="container-content py-4">
@@ -36,9 +56,10 @@ const Header = () => {
             </span>
           </div>
 
-          <div className="hidden md:flex items-center space-x-8">
-            <button onClick={() =>navigate("/login") } className="text-body text-muted-foreground hover:text-foreground transition-colors duration-200">
-              Iniciar Sesión
+          {/* User Name Display */}
+          <div className="hidden md:flex items-center space-x-8 mr-8">
+            <button className="text-body text-muted-foreground hover:text-foreground transition-colors duration-200">
+              Bienvenido {userName ?? 'Usuario'}
             </button>
           </div>
           {/* Desktop Navigation */}
@@ -111,4 +132,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default Header2;

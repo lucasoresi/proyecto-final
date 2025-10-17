@@ -1,4 +1,4 @@
-import Header from '@/components/Header';
+import Header2 from '@/components/Header2';
 import Hero from '@/components/Hero';
 import Services from '@/components/Services';
 import About from '@/components/About';
@@ -7,10 +7,11 @@ import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 
 
-const Index = () => {
+const IndexLoging = () => {
+
   return (
     <div className="min-h-screen">
-    <Header />
+    <Header2/>
       <main>
         <Hero />
         <Services />
@@ -23,4 +24,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default IndexLoging;

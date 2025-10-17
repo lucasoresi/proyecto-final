@@ -1,5 +1,49 @@
 import { createRoot } from 'react-dom/client'
-import App from './App.tsx'
+import { App } from './App.tsx'
 import './index.css'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import React from 'react';
+import ReactDOM from 'react-dom/client'; 
+import Login from './components/Login.tsx';
+import ProtectedRoute from './components/auth/ProtectedRoute.tsx';
+import { AuthProvider } from './components/auth/AuthProvider.tsx';
+import Register from './components/Register.tsx';
+import { Main } from './App.tsx';
+import NotFound from './pages/NotFound.tsx';
+const router = createBrowserRouter([
+    {
+        path: "/",
+        element: <App />,
+    },
+    {
+        path: "/login",
+        element: <Login />,
+    },
+    {
+        path: "/register",
+        element: <Register />,
+    },
+    {
+        path:"/",
+        element:<ProtectedRoute/>,
+        children:[
+            {
+                path:"/main",
+                element:<Main/>,
+            }
+        ]
+    },
+    {
+        path: "*",
+        element: <NotFound/>
+    }
+    
+]);
 
-createRoot(document.getElementById("root")!).render(<App />);
+ReactDOM.createRoot(document.getElementById("root") as HTMLBRElement).render(
+    <React.StrictMode>
+        <AuthProvider>
+            <RouterProvider router={router} />
+        </AuthProvider>
+    </React.StrictMode>
+);

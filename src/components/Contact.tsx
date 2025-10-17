@@ -10,16 +10,20 @@ import { Calendar } from '@/components/ui/calendar';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { useToast } from '@/hooks/use-toast';
 import { cn } from '@/lib/utils';
+import supabase from '@/config/spabaseClient';
 
 const Contact = () => {
+  const [formError, setFromError] = useState(null);
   const { toast } = useToast();
   const [formData, setFormData] = useState({
-    name: '',
+    name: '', 
     email: '',
     phone: '',
     message: '',
     date: undefined as Date | undefined
   });
+
+
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
@@ -28,14 +32,56 @@ const Contact = () => {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // In a real application, you would send this data to your backend
+    
+    if (!formData.name ||
+    !formData.email ||
+    !formData.message ||
+    !formData.date ||
+    !formData.phone) {
+      setFromError(true)
+      toast({
+        title: "Error",
+        description: "Por favor, completa todos los campos obligatorios.",
+      });
+      return;
+    }
+    const {data, error} = await supabase
+      .from('agendar_consultas')
+      .insert([{name: formData.name,
+      email: formData.email,
+      phone: formData.phone,
+      message: formData.message,
+      date: formData.date.toISOString().split('T')[0] // formato YYYY-MM-DD
+    }])
+      .select()
+    if (error) {
+      console.error('Error al enviar el formulario:', error);
+      toast({
+        title: "Error",
+        description: "Hubo un problema al enviar tu consulta. Por favor, intenta nuevamente.",
+      });
+      return;
+    }
+    if (data) {
+      console.log('Formulario enviado con éxito:', data);
+      setFromError(null)
+      setFormData({
+      name: '',
+      email: '',
+      phone: '',
+      message: '',
+      date: undefined
+    });
+    }
+
+    
     toast({
       title: "Mensaje enviado",
       description: "Nos pondremos en contacto contigo pronto.",
     });
-    setFormData({ name: '', email: '', phone: '', message: '', date: undefined });
+    
   };
 
   const openWhatsApp = () => {
