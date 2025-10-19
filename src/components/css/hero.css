@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+.hero-font {
+    font-family: 'Montserrat', sans-serif !important;
+    font-size: normal !important;
+}
+.text-morado {
+  color: #925ea2 !important;
+  background-color: #f5eafd !important; 
+}
+.profesional{
+    color: #925ea2;
+}
+.profesional:hover{
+    color: #7e5a87;
+    transition: 0.5s;
+}
+
+.psicopedagogica{
+    color: #925ea2;
+}
+.psicopedagogica:hover{
+    color: #7e5a87;
+    transition: 0.5s;
+}
+.whatapp2-color{
+    background-color: #925ea2 !important;
+    color: #fff !important;
+}
+
+.whatapp2-color:hover{
+    background-color: #7e5a87 !important;
+}

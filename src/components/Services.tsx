@@ -17,9 +17,9 @@ const Services = () => {
     },
     {
       icon: Brain,
-      title: 'Terapia Cognitivo-Conductual',
-      description: 'Enfoque científicamente validado para modificar patrones de pensamiento y comportamiento que generan malestar.',
-      features: ['Técnicas basadas en evidencia', 'Herramientas prácticas', 'Resultados medibles']
+      title: 'Evaluación neurocognitiva',
+      description: 'Es una "muestra" de la cognición del individuo recabada bajo condiciones controladas. Cuenta con diferentes fuentes de datos:',
+      features: ['Entrevista exhaustiva', 'Demanda del paciente y/o familiar', 'Pruebas neuropsicologicas' ]
     },
     {
       icon: Baby,

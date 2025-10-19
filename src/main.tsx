@@ -10,10 +10,16 @@ import { AuthProvider } from './components/auth/AuthProvider.tsx';
 import Register from './components/Register.tsx';
 import { Main } from './App.tsx';
 import NotFound from './pages/NotFound.tsx';
+import Consultas from './components/Consultas.tsx';
+
 const router = createBrowserRouter([
     {
         path: "/",
         element: <App />,
+    },
+    {
+        path: "/consultas",
+        element: <Consultas />,
     },
     {
         path: "/login",

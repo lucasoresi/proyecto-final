@@ -1,0 +1,22 @@
+@font-face {
+  font-family: 'Gramatika' !important;
+  src: url('./assets/gramatika-font') format('truetype') !important;
+  font-weight: normal !important;
+  font-style: light !important;
+}
+.EP-logo img{
+    height: 40px;
+    width: 40px;
+    object-fit: cover; 
+}
+.titulo{
+    height: 35px;
+    width: 190px;
+}
+.boton-whatsapp button{
+    background-color: #925ea2;
+
+}
+.boton-whatsapp button:hover{
+    background-color: #7e5a87;
+}
