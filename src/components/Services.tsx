@@ -1,23 +1,23 @@
-import { Heart, Users, Brain, Baby, Lightbulb, Target } from 'lucide-react';
+import { BookOpenText, SquarePen , Brain, Baby, Lightbulb, Target, Heart } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 
 const Services = () => {
   const services = [
     {
-      icon: Heart,
-      title: 'Terapia Individual',
-      description: 'Sesiones personalizadas para trabajar en tu crecimiento personal, autoestima, ansiedad, depresión y otros desafíos emocionales.',
-      features: ['Evaluación psicológica', 'Plan terapéutico personalizado', 'Seguimiento continuo']
+      icon: BookOpenText,
+      title: 'Diagnóstico Psicopedagógico',
+      description: 'Orientado a comprender el modo en que cada persona aprende, sus fortalezas, desafíos y particularidades. A través de una evaluacion rigurossa, que incluye:',
+      features: ['Entrevistas', 'Pruevas estandarizadas', 'Observaciones clínicas','Informe psicopedagógico']
     },
     {
-      icon: Users,
-      title: 'Terapia de Pareja',
-      description: 'Acompañamiento para fortalecer la relación, mejorar la comunicación y resolver conflictos de manera constructiva.',
-      features: ['Comunicación efectiva', 'Resolución de conflictos', 'Fortalecimiento del vínculo']
+      icon: SquarePen,
+      title: 'Tratamiento Psicopedagógico',
+      description: 'Desarrollado con intervenciones personalizadas, orientadas a fortalecer los procesos de aprendizaje y promover el desarrollo integral: ',
+      features: ['Potencia el aprendizaje', 'Favorece la autonomia', 'Interviene en diferentes contextos']
     },
     {
       icon: Brain,
-      title: 'Evaluación neurocognitiva',
+      title: 'Evaluación Neurocognitiva',
       description: 'Es una "muestra" de la cognición del individuo recabada bajo condiciones controladas. Cuenta con diferentes fuentes de datos:',
       features: ['Entrevista exhaustiva', 'Demanda del paciente y/o familiar', 'Pruebas neuropsicologicas' ]
     },
@@ -39,7 +39,7 @@ const Services = () => {
       description: 'Orientación para alcanzar objetivos personales y profesionales, desarrollando habilidades y fortalezas.',
       features: ['Definición de metas', 'Plan de acción', 'Desarrollo personal']
     }
-  ];
+  ];Heart
 
   return (
     <section id="services" className="py-20 bg-secondary/30">
@@ -49,7 +49,7 @@ const Services = () => {
             Nuestros Servicios
           </h2>
           <p className="text-subheading text-muted-foreground max-w-3xl mx-auto">
-            Ofrecemos una amplia gama de servicios psicológicos adaptados a tus necesidades específicas
+            Combinamos experiencia clínica y enfoque integral para potenciar el aprendizaje 
           </p>
         </div>
 
