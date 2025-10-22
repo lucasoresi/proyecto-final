@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import supabase from '@/config/spabaseClient';
 import TarjetaConsulta from "./tajetas/tarjetaConsultas";
-import "./../components/css/tarjetaConsultas.css";
+import "./../components/css/Consultas.css";
 
 const Consultas = () => { 
     const [error, setError] = useState(false);

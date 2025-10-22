@@ -23,6 +23,7 @@ const Login = () => {
             toast({
                 title: "Error",
                 description: "Completá email y contraseña.",
+                duration: 3000,
             });
             return;
         }
@@ -49,6 +50,7 @@ const Login = () => {
                     toast({
                     title: "Credenciales inválidas",
                     description: "Email o contraseña incorrectos.",
+                    duration: 3000,
                     });
                     return;
                 }
@@ -59,12 +61,14 @@ const Login = () => {
                 toast({
                     title: "Bienvenido",
                     description: "Has iniciado sesión correctamente.",
+                    duration: 3000,
                 });
                 } catch (err) {
                 console.error(err);
                 toast({
                     title: "Error",
                     description: "Error al iniciar sesión. Intentá nuevamente.",
+                    duration: 3000,
                 });
         }
   };

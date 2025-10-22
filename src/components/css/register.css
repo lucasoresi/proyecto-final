@@ -4,11 +4,11 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: linear-gradient(135deg, #9f42e1, #00f2fe);
+  background-image: url(src/assets/fondo_register.jpg);
   font-family: "Segoe UI", sans-serif;
 }
 
-/* Tarjeta */
+
 .register-card {
   background: #fff;
   padding: 2.5rem;
@@ -19,14 +19,13 @@
   text-align: center;
 }
 
-/* Título */
 .register-title {
   margin-bottom: 1.5rem;
   color: #007bff;
   font-weight: bold;
 }
 
-/* Grupos de inputs */
+
 .form-group {
   text-align: left;
   margin-bottom: 1.2rem;
@@ -39,7 +38,7 @@
   color: #333;
 }
 
-/* Inputs */
+
 .form-input {
   width: 100%;
   padding: 0.8rem;
@@ -54,7 +53,7 @@
   box-shadow: 0px 0px 5px rgba(0, 123, 255, 0.4);
 }
 
-/* Botón */
+
 .btn-submit {
   width: 100%;
   padding: 0.9rem;
@@ -72,14 +71,14 @@
   background: #0056b3;
 }
 
-/* Mensaje de error */
+
 .error-msg {
   color: #dc3545;
   font-size: 0.9rem;
   margin-bottom: 1rem;
 }
 
-/* Texto de registro */
+
 .register-text {
   margin-top: 1rem;
   font-size: 0.9rem;

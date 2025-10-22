@@ -6,26 +6,19 @@
     margin-bottom: 20px;
 }
 
-.consulta-tarjetah3 {
-    margin: 0 0 10px;
-    font-size: 1.2rem;
-    color: #333;
-}
-
-.consulta-tarjeta.message {
+.consulta-tarjeta .message {
     color: #666;
     margin-bottom: 12px;
 }
 
-
-.consulta-tarjeta.date {
+.consulta-tarjeta .date {
     color: #888;
     font-size: 14px;
     margin-bottom: 16px;
 }
 
-.consulta-delete {
-    background: #ff4444;
+.consulta-delete button {  
+    background: #5c5a5a;
     color: white;
     border: none;
     padding: 8px 16px;
@@ -34,15 +27,14 @@
     transition: background-color 0.2s;
 }
 
-.consulta-delete:hover {
+.consulta-delete button:hover {  
     background: #ff0000;
 }
 
 .consultas-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 20px;
-    padding: 20px;
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 20px;
 }
 
 .orderBy {
@@ -63,3 +55,4 @@
 .orderBy button:hover {
     background: #e0e0e0;
 }
+

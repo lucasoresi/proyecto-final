@@ -14,9 +14,9 @@
     width: 190px;
 }
 .boton-whatsapp button{
-    background-color: #925ea2;
+    background-color: #925ea2 !important;
 
 }
 .boton-whatsapp button:hover{
-    background-color: #7e5a87;
+    background-color: #7e5a87 !important;
 }

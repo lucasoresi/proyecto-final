@@ -1,20 +1,28 @@
 import supabase from "@/config/spabaseClient";
-import { error } from "console";
 
 const TarjetaConsulta = ({consulta, onDelete}) =>{
-   const handleDelete = async () => {
-        const {data, error} = await supabase
-        .from('agendar_consultas')
-        .delete()
-        .eq('id', consulta.id)
-        .select('*');
-        
-        if(error){
-            console.error("Error deleting consulta:", error);
-            return;
-        }
-        if(data){
-            onDelete(consulta.id);
+   const handleDelete = async () => { 
+        try  {
+                if (!confirm("¿Estás seguro de eliminar esta consulta?")) {
+                    return;
+                }
+            const {data, error} = await supabase
+                .from('agendar_consultas')
+                .delete()
+                .eq('id', consulta.id)
+                .select();
+                
+                
+                if(error){
+                    console.error("Error deleting consulta:", error);
+                    return;
+                }
+                if(data){
+                    console.log("Consulta deleted:", data);
+                    onDelete(consulta.id);
+            }
+        } catch (error) {
+        console.error("Unexpected error deleting consulta:", error);
         }
    }
     return(

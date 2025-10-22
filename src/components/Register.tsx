@@ -40,6 +40,7 @@ const Register = () => {
                 toast({
                     title: "Error",
                     description: "Hubo un error al verificar el email. Por favor, intentá nuevamente.",
+                    duration: 3000,
                 });
                 return;
             }
@@ -51,6 +52,7 @@ const Register = () => {
                 toast({
                     title: "Error",
                     description: "El email ya está registrado. Por favor, usá otro.",
+                    duration: 3000,
                 });
                 return;
             }
@@ -66,6 +68,7 @@ const Register = () => {
                 toast({
                 title: "Error",
                 description: "Hubo un error al iniciar sesión. Por favor, intentá nuevamente.",
+                duration: 3000,
             });
             return;
             }
@@ -76,6 +79,7 @@ const Register = () => {
             toast({
                 title: "Éxito",
                 description: "Te has registrado correctamente.",
+                duration: 3000,
             });
             }
         
@@ -83,6 +87,7 @@ const Register = () => {
             toast({
                 title: "Error",
                 description: "Hubo un error al iniciar sesión. Por favor, intentá nuevamente.",
+                duration: 3000,
             });
             return;
     }

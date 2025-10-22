@@ -10,7 +10,7 @@ import { AuthProvider } from './components/auth/AuthProvider.tsx';
 import Register from './components/Register.tsx';
 import { Main } from './App.tsx';
 import NotFound from './pages/NotFound.tsx';
-import Consultas from './components/Consultas.tsx';
+import IndexConsultas from './pages/IndexConsultas.tsx';
 
 const router = createBrowserRouter([
     {
@@ -19,7 +19,7 @@ const router = createBrowserRouter([
     },
     {
         path: "/consultas",
-        element: <Consultas />,
+        element: <IndexConsultas />,
     },
     {
         path: "/login",

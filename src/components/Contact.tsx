@@ -11,10 +11,14 @@ import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover
 import { useToast } from '@/hooks/use-toast';
 import { cn } from '@/lib/utils';
 import supabase from '@/config/spabaseClient';
+import { useAuth } from './auth/AuthProvider';
+import { useNavigate } from 'react-router-dom';
 
 const Contact = () => {
   const [formError, setFromError] = useState(null);
   const { toast } = useToast();
+  const auth = useAuth();
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: '', 
     email: '',
@@ -34,49 +38,50 @@ const Contact = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    if (!formData.name ||
-    !formData.email ||
-    !formData.message ||
-    !formData.date ||
-    !formData.phone) {
-      setFromError(true)
-      toast({
-        title: "Error",
-        description: "Por favor, completa todos los campos obligatorios.",
-      });
-      return;
+    if(!auth.isAuthenticated){ 
+      navigate('/login');
+    }else{
+            if (!formData.name ||
+            !formData.email ||
+            !formData.message ||
+            !formData.date ||
+            !formData.phone) {
+              setFromError(true)
+              toast({
+                title: "Error",
+                description: "Por favor, completa todos los campos obligatorios.",
+              });
+              return;
+            }
+            const {data, error} = await supabase
+              .from('agendar_consultas')
+              .insert([{name: formData.name,
+              email: formData.email,
+              phone: formData.phone,
+              message: formData.message,
+              date: formData.date.toISOString().split('T')[0] 
+            }])
+              .select()
+            if (error) {
+              console.error('Error al enviar el formulario:', error);
+              toast({
+                title: "Error",
+                description: "Hubo un problema al enviar tu consulta. Por favor, intenta nuevamente.",
+              });
+              return;
+            }
+            if (data) {
+              console.log('Formulario enviado con éxito:', data);
+              setFromError(null)
+              setFormData({
+              name: '',
+              email: '',
+              phone: '',
+              message: '',
+              date: undefined
+            });
+          } 
     }
-    const {data, error} = await supabase
-      .from('agendar_consultas')
-      .insert([{name: formData.name,
-      email: formData.email,
-      phone: formData.phone,
-      message: formData.message,
-      date: formData.date.toISOString().split('T')[0] // formato YYYY-MM-DD
-    }])
-      .select()
-    if (error) {
-      console.error('Error al enviar el formulario:', error);
-      toast({
-        title: "Error",
-        description: "Hubo un problema al enviar tu consulta. Por favor, intenta nuevamente.",
-      });
-      return;
-    }
-    if (data) {
-      console.log('Formulario enviado con éxito:', data);
-      setFromError(null)
-      setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      message: '',
-      date: undefined
-    });
-    }
-
-    
     toast({
       title: "Mensaje enviado",
       description: "Nos pondremos en contacto contigo pronto.",

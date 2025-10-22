@@ -3,6 +3,9 @@ import { Menu, X, MessageCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useNavigate } from 'react-router-dom';
 import supabase from '@/config/spabaseClient';
+import logo from '@/assets/ep logo-40.png';
+import titulo from '@/assets/titulo.png';
+import '@/components/css/header.css';
 
 const Header2 = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -48,11 +51,11 @@ const Header2 = () => {
       <nav className="container-content py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
-              <span className="text-primary-foreground font-bold text-sm">EP</span>
+            <div className="EP-logo">
+              <img src={logo} alt="Logo" />
             </div>
-            <span className="text-heading font-semibold text-foreground">
-              Equipo de Psicología
+            <span className= "titulo">
+              <img src={titulo} alt="Equipo Psip" />
             </span>
           </div>
 
@@ -76,11 +79,11 @@ const Header2 = () => {
           </div>
 
           {/* Contact Actions */}
-          <div className="hidden md:flex items-center space-x-3">
+          <div className="boton-whatsapp">
             <Button
               size="sm"
-              onClick={() => window.open('https://wa.me/5491234567890?text=Hola, me gustaría agendar una consulta', '_blank')}
-              className="bg-primary hover:bg-primary/90"
+              onClick={() => window.open('https://wa.me/2914161306?text=Hola, me gustaría agendar una consulta', '_blank')}
+              className=""
             >
               <MessageCircle className="w-4 h-4 mr-2" />
               WhatsApp
@@ -114,7 +117,7 @@ const Header2 = () => {
                   {item.name}
                 </button>
               ))}
-              <div className="flex flex-col space-y-2 pt-4 border-t border-border">
+              {/* <div className="flex flex-col space-y-2 pt-4 border-t border-border">
                 <Button
                   size="sm"
                   onClick={() => window.open('https://wa.me/5491234567890?text=Hola, me gustaría agendar una consulta', '_blank')}
@@ -123,7 +126,7 @@ const Header2 = () => {
                   <MessageCircle className="w-4 h-4 mr-2" />
                   WhatsApp
                 </Button>
-              </div>
+              </div> */}
             </div>
           </div>
         )}

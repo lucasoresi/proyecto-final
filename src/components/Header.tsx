@@ -96,16 +96,16 @@ const Header = () => {
                   {item.name}
                 </button>
               ))}
-              <div className="flex flex-col space-y-2 pt-4 border-t border-border">
+              {/* <div className="boton-whatsapp">
                 <Button
                   size="sm"
                   onClick={() => window.open('https://wa.me/5491234567890?text=Hola, me gustaría agendar una consulta', '_blank')}
                   className="bg-primary hover:bg-primary/90 w-full justify-start"
                 >
-                  <MessageCircle className="w-4 h-4 mr-2" />
+                <MessageCircle className="w-4 h-4 mr-2" />
                   WhatsApp
                 </Button>
-              </div>
+              </div> */}
             </div>
           </div>
         )}
