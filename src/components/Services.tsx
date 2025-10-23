@@ -1,41 +1,41 @@
-import { BookOpenText, SquarePen , Brain, Baby, Lightbulb, Target, Heart } from 'lucide-react';
+import { BookOpenText, SquarePen , Brain, Target, Heart,LibraryBig, Users } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 
 const Services = () => {
   const services = [
     {
       icon: BookOpenText,
-      title: 'Diagnóstico Psicopedagógico',
+      title: 'Diagnósticos Psicopedagógicos',
       description: 'Orientado a comprender el modo en que cada persona aprende, sus fortalezas, desafíos y particularidades. A través de una evaluacion rigurossa, que incluye:',
       features: ['Entrevistas', 'Pruevas estandarizadas', 'Observaciones clínicas','Informe psicopedagógico']
     },
     {
       icon: SquarePen,
-      title: 'Tratamiento Psicopedagógico',
+      title: 'Tratamientos Psicopedagógicos',
       description: 'Desarrollado con intervenciones personalizadas, orientadas a fortalecer los procesos de aprendizaje y promover el desarrollo integral: ',
       features: ['Potencia el aprendizaje', 'Favorece la autonomia', 'Interviene en diferentes contextos']
     },
     {
       icon: Brain,
-      title: 'Evaluación Neurocognitiva',
+      title: 'Evaluaciones Neurocognitivas',
       description: 'Es una "muestra" de la cognición del individuo recabada bajo condiciones controladas. Cuenta con diferentes fuentes de datos:',
       features: ['Entrevista exhaustiva', 'Demanda del paciente y/o familiar', 'Pruebas neuropsicologicas' ]
     },
     {
-      icon: Baby,
-      title: 'Psicología Infantil',
-      description: 'Atención especializada para niños y adolescentes, abordando dificultades emocionales, conductuales y del desarrollo.',
-      features: ['Ludoterapia', 'Orientación a padres', 'Evaluación del desarrollo']
+      icon: LibraryBig,
+      title: 'Grupos de Estudio',
+      description: 'Espacio organizado en el que nos reunimos con el propóposito de aprender, debatir y profundizar en temas específicos de la Psicopedagogía Clínica: ACI, DI, FIL, TDAH, DEA, TANV, etc.',
+      features: []
     },
     {
-      icon: Lightbulb,
-      title: 'Mindfulness y Bienestar',
-      description: 'Técnicas de atención plena para reducir el estrés, mejorar la concentración y promover el equilibrio emocional.',
-      features: ['Meditación guiada', 'Técnicas de relajación', 'Manejo del estrés']
+      icon: Users,
+      title: 'Orientación a Padres',
+      description: 'Espacio de acompañamiento y reflexión sobre las necesidades educativas y emocionales de niños y adolescentes, fortaleciendo los vínculos y promoviendo el aprendizaje desde una mirada psicopedagógica.',
+      features: []
     },
     {
       icon: Target,
-      title: 'Coaching Psicológico',
+      title: 'Orientación Vocacional/Ocupacional',
       description: 'Orientación para alcanzar objetivos personales y profesionales, desarrollando habilidades y fortalezas.',
       features: ['Definición de metas', 'Plan de acción', 'Desarrollo personal']
     }
