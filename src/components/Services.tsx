@@ -1,4 +1,4 @@
-import { BookOpenText, SquarePen , Brain, Target, Heart,LibraryBig, Users } from 'lucide-react';
+import { BookOpenText, SquarePen , Brain, Heart,LibraryBig, Users,Lightbulb } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 
 const Services = () => {
@@ -34,10 +34,10 @@ const Services = () => {
       features: []
     },
     {
-      icon: Target,
+      icon: Lightbulb,
       title: 'Orientación Vocacional/Ocupacional',
-      description: 'Orientación para alcanzar objetivos personales y profesionales, desarrollando habilidades y fortalezas.',
-      features: ['Definición de metas', 'Plan de acción', 'Desarrollo personal']
+      description: 'Proceso de acompañamiento que orienta a adolescentes, jóvenes y adultos en la definición de su camino académico, profesional y laboral, promoviendo decisiones autónomas y coherentes con sus intereses y capacidades.',
+      features: []
     }
   ];Heart
 

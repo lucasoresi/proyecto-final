@@ -6,22 +6,22 @@ const About = () => {
     {
       icon: Award,
       title: 'Profesionales Matriculados',
-      description: 'Colegio de Psicólogos de Buenos Aires'
+      description: 'Universidad del Salvador'
     },
     {
       icon: BookOpen,
-      title: '+10 Años de Experiencia',
-      description: 'En terapia psicológica y bienestar mental'
+      title: '+30 Años de Experiencia',
+      description: 'En Psicopedagogía y en docencia universitaria'
     },
     {
       icon: Users,
-      title: '+500 Pacientes',
-      description: 'Han confiado en nuestro acompañamiento'
+      title: '+700 Pacientes y Consultas',
+      description: 'Han confiado en nuestros servicios'
     },
     {
       icon: Heart,
       title: 'Enfoque Integral',
-      description: 'Cuidado completo de la salud mental'
+      description: 'Neuropsicología del aprendizaje'
     }
   ];
 
