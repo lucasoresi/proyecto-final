@@ -11,6 +11,8 @@ import Register from './components/Register.tsx';
 import { Main } from './App.tsx';
 import NotFound from './pages/NotFound.tsx';
 import IndexConsultas from './pages/IndexConsultas.tsx';
+import IndexAdmin from './pages/IndexAdmin.tsx';
+import ProtectedAdmin from './components/auth/ProtectedAdmin.tsx';
 
 const router = createBrowserRouter([
     {
@@ -36,6 +38,16 @@ const router = createBrowserRouter([
             {
                 path:"/main",
                 element:<Main/>,
+            }
+        ]
+    },
+    {
+        path:"/",
+        element:<ProtectedAdmin/>,
+        children:[
+            {
+                path:"/admin",
+                element:<IndexAdmin/>,
             }
         ]
     },

@@ -6,19 +6,23 @@ import { set } from "date-fns";
 import { toast } from "@/components/ui/use-toast";
 import { se } from "date-fns/locale";
 import { useAuth } from "./auth/AuthProvider";
+import { useAuthAdmin } from "./auth/AuthProviderAdmin";
 
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState(false);
+    const [errorData, setErrorData] = useState(false)
     const navigate = useNavigate();
     const auth = useAuth();
+    const authAdmin = useAuthAdmin();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError(false);
 
         if (!email || !password) {
+            setErrorData(false)
             setError(true);
             toast({
                 title: "Error",
@@ -28,7 +32,7 @@ const Login = () => {
             return;
         }
         try {
-
+            
             const { data, error: queryError } = await supabase
                 .from("usuarios")
                 .select("*")
@@ -44,25 +48,34 @@ const Login = () => {
                     return;
                 }
 
-        
+                
                 if (!data || data.password !== password) {
-                    setError(true);
-                    toast({
-                    title: "Credenciales inválidas",
-                    description: "Email o contraseña incorrectos.",
-                    duration: 3000,
-                    });
+                    setError(false)
+                    setErrorData(true);
+                    
                     return;
                 }
+                if (data.email === "equipopsipbbca@gmail.com" && data.password === import.meta.env.VITE_ADMIN_PASSWORD){
+                    authAdmin.isAuthenticatedAdmin = true;
+                    localStorage.setItem('userName', data.name ?? '');
+                    navigate("/admin");
+                    toast({
+                        title: "Bienvenido Admin",
+                        description: "Has iniciado sesión correctamente.",
+                        duration: 3000,
+                    });
+                    return;
+                }else{
+                    auth.isAuthenticated = true;
+                    localStorage.setItem('userName', data.name ?? '');
+                    navigate("/main");
+                    toast({
+                        title: "Bienvenido",
+                        description: "Has iniciado sesión correctamente.",
+                        duration: 3000,
+                    });
+                }
 
-                auth.isAuthenticated = true;
-                localStorage.setItem('userName', data.name ?? '');
-                navigate("/main");
-                toast({
-                    title: "Bienvenido",
-                    description: "Has iniciado sesión correctamente.",
-                    duration: 3000,
-                });
                 } catch (err) {
                 console.error(err);
                 toast({
@@ -105,7 +118,9 @@ const Login = () => {
             {error && (
             <p className="error-msg">Por favor completá todos los campos.</p>
             )}
-
+            {errorData && (
+                <p className="error-msg">Usuario o contraseña incorecta</p>
+            )}
             <button type="submit" className="btn-submit" >
             Entrar
             </button>
