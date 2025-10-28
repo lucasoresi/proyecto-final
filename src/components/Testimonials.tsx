@@ -1,143 +1,137 @@
-import { Star, Quote } from 'lucide-react';
-import { cn } from "@/lib/utils";
-import Marquee from "@/components/magicui/marquee";
+"use client";
 
-const reviews = [
+import { Marquee } from "@/components/magicui/marquee";
+import { cn } from "@/lib/utils";
+import { Star, Quote } from "lucide-react";
+import { useState } from "react";
+
+const initialReviews = [
   {
     name: "María González",
     location: "Bahía Blanca",
     body: "El acompañamiento que recibí fue excepcional. Me ayudaron a superar un momento muy difícil en mi vida y a desarrollar herramientas que sigo usando hoy en día.",
     rating: 5,
-    initials: "MG"
   },
   {
     name: "Carlos Rodríguez",
-    location: "Bahía Blanca", 
+    location: "Bahía Blanca",
     body: "Las sesiones online fueron muy efectivas. La profesionalidad y calidez humana del equipo me permitieron sentirme cómodo desde el primer encuentro.",
     rating: 5,
-    initials: "CR"
   },
   {
     name: "Ana López",
     location: "Bahía Blanca",
     body: "Excelente atención. Me ayudaron con mis niveles de ansiedad y ahora puedo manejar mejor las situaciones estresantes. Muy recomendable.",
     rating: 5,
-    initials: "AL"
   },
   {
     name: "Jorge Martínez",
     location: "Bahía Blanca",
     body: "La terapia de pareja nos ayudó enormemente. Aprendimos a comunicarnos mejor y a fortalecer nuestra relación. Estamos muy agradecidos.",
     rating: 5,
-    initials: "JM"
   },
   {
     name: "Lucía Fernández",
     location: "Bahía Blanca",
     body: "Un espacio seguro donde pude expresar mis emociones sin juicios. El proceso terapéutico cambió mi perspectiva de vida de manera positiva.",
     rating: 5,
-    initials: "LF"
   },
   {
     name: "Roberto Silva",
     location: "Bahía Blanca",
     body: "Profesionales muy capacitados. La terapia me ayudó a gestionar el estrés laboral y mejorar mi calidad de vida significativamente.",
     rating: 5,
-    initials: "RS"
   },
   {
     name: "Patricia Morales",
     location: "Bahía Blanca",
     body: "Mi hijo adolescente encontró en este equipo el apoyo que necesitaba. Excelente trabajo con jóvenes y familias.",
     rating: 5,
-    initials: "PM"
   },
   {
     name: "Alejandro Castro",
     location: "Bahía Blanca",
     body: "Las técnicas de mindfulness que aprendí han sido fundamentales para mi bienestar. Recomiendo ampliamente sus servicios.",
     rating: 5,
-    initials: "AC"
-  }
+  },
 ];
 
-const firstRow = reviews.slice(0, reviews.length / 2);
-const secondRow = reviews.slice(reviews.length / 2);
+const firstRow = initialReviews.slice(0, initialReviews.length / 2);
+const secondRow = initialReviews.slice(initialReviews.length / 2);
 
-const ReviewCard = ({
-  name,
-  location,
-  body,
-  rating,
-  initials,
-}: {
-  name: string;
-  location: string;
-  body: string;
-  rating: number;
-  initials: string;
-}) => {
+const ReviewCard = ({ name, location, body, rating }) => {
   return (
-    <figure
-      className={cn(
-        "relative h-full w-80 cursor-pointer overflow-hidden rounded-xl border p-6 gentle-shadow",
-        // light styles
-        "border-border bg-card hover:bg-card/80",
-        // dark styles  
-        "dark:border-border dark:bg-card dark:hover:bg-card/80",
-      )}
-    >
-      {/* Quote Icon */}
-      <div className="absolute top-4 right-4 opacity-10">
-        <Quote className="w-6 h-6 text-primary" />
-      </div>
-
-      {/* Rating */}
-      <div className="flex items-center space-x-1 mb-4">
-        {[...Array(rating)].map((_, i) => (
-          <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-        ))}
-      </div>
-
-      {/* Content */}
-      <blockquote className="text-sm text-muted-foreground mb-6 italic leading-relaxed">
-        "{body}"
-      </blockquote>
-
-      {/* Author */}
-      <div className="flex items-center">
-        <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center mr-3">
-          <span className="text-primary font-semibold text-sm">
-            {initials}
-          </span>
+    <figure className="relative w-64 cursor-pointer overflow-hidden rounded-2xl border p-4 bg-white shadow-md hover:shadow-lg transition-all duration-300">
+      <div className="relative z-10">
+        <div className="flex items-center gap-3">
+          <div className="flex flex-col">
+            <figcaption className="text-lg font-semibold">{name}</figcaption>
+            <p className="text-xs text-gray-500">{location}</p>
+          </div>
         </div>
-        <div>
-          <div className="font-semibold text-foreground text-sm">
-            {name}
-          </div>
-          <div className="text-xs text-muted-foreground">
-            {location}
-          </div>
+        {/* Content */}
+        <blockquote className="mt-3 text-sm text-gray-700 italic">"{body}"</blockquote>
+        {/* Rating */}
+        <div className="flex items-center gap-1 mt-2">
+          {[1, 2, 3, 4, 5].map((star) => (
+            <Star
+              key={star}
+              size={14}
+              fill={rating >= star ? "currentColor" : "none"}
+              stroke="currentColor"
+              className={`cursor-pointer transition-colors ${rating >= star ? "text-yellow-400" : "text-gray-300"}`}
+            />
+          ))}
         </div>
       </div>
     </figure>
   );
 };
 
-const Testimonials = () => {
-  return (
-    <section id="testimonials" className="py-20 bg-gradient-to-b from-secondary/20 to-background">
-      <div className="container-content">
-        <div className="text-center mb-16">
-          <h2 className="text-heading text-foreground mb-4">
-            Lo que dicen nuestros pacientes
-          </h2>
-          <p className="text-subheading text-muted-foreground max-w-3xl mx-auto">
-            La confianza de quienes han elegido nuestro acompañamiento es nuestro mayor orgullo
-          </p>
-        </div>
+export default function Testimonials() {
+  const [reviews, setReviews] = useState(initialReviews);
+  const [formData, setFormData] = useState({
+    name: "",
+    location: "",
+    body: "",
+    rating: 5,
+  });
+  const [showForm, setShowForm] = useState(false);
 
-        {/* Marquee Testimonials */}
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!formData.name || !formData.body) return;
+
+    const initials = formData.name
+      .split(" ")
+      .map((n) => n[0])
+      .join("")
+      .slice(0, 2)
+      .toUpperCase()
+
+    const newReview = {
+      ...formData, initials
+    };
+    setReviews([newReview, ...reviews]);
+    setFormData({ name: "", location: "", body: "", rating: 5 });
+    setShowForm(false);
+  };
+
+  // const firstRow = reviews.slice(0, Math.ceil(reviews.length / 2));
+  // const secondRow = reviews.slice(Math.ceil(reviews.length / 2));
+
+  return (
+    <div className="py-16 bg-gradient-to-b from-gray-50 to-white">
+
+      <h2 className="text-center text-3xl font-bold text-gray-800 mb-10">
+        Opiniones de Nuestros Clientes
+      </h2>
+
+         {/* Marquee Testimonials */}
         <div className="relative flex w-full flex-col items-center justify-center overflow-hidden rounded-lg">
           <Marquee pauseOnHover className="[--duration:40s] [--gap:1rem]">
             {firstRow.map((review, index) => (
@@ -149,24 +143,77 @@ const Testimonials = () => {
               <ReviewCard key={`second-${index}`} {...review} />
             ))}
           </Marquee>
-          
         {/* Gradient Overlays */}
-          <div className="pointer-events-none absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-background via-background/50 to-transparent"></div>
-          <div className="pointer-events-none absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l from-background via-background/50 to-transparent"></div>
-        </div>
-
-        {/* Trust Badge */}
-        <div className="mt-16 text-center">
-          <div className="inline-flex items-center px-6 py-3 bg-trust/10 rounded-xl border border-trust/20">
-            <Star className="w-5 h-5 text-trust mr-2" />
-            <span className="text-trust font-medium">
-              Más de 100 reseñas positivas en Google
-            </span>
-          </div>
-        </div>
+        <div className="pointer-events-none absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-background via-background/100 to-transparent"></div>
+        <div className="pointer-events-none absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l from-background via-background/100 to-transparent"></div>
       </div>
-    </section>
-  );
-};
 
-export default Testimonials;
+
+      {/* Botón que despliega el formulario */}
+      <div className="text-center mt-10">
+        <button
+          onClick={() => setShowForm(!showForm)}
+          className="bg-gray-800 text-white px-6 py-2 rounded-lg hover:bg-gray-700 transition"
+        >
+          {showForm ? "Cerrar formulario" : "Dejá tu opinión"}
+        </button>
+      </div>
+
+      {/* Formulario expandible con animación */}
+      <div
+        className={`transition-all duration-500 overflow-hidden ${showForm ? "max-h-[1000px] mt-6 opacity-100" : "max-h-0 opacity-0"
+          }`}
+      >
+        <form
+          onSubmit={handleSubmit}
+          className="max-w-md mx-auto bg-white p-6 rounded-xl shadow-md"
+        >
+          <h3 className="text-lg font-semibold mb-4 text-center">
+            Contanos tu experiencia
+          </h3>
+          <input
+            type="text"
+            name="name"
+            placeholder="Tu nombre"
+            value={formData.name}
+            onChange={handleChange}
+            className="w-full border p-2 mb-3 rounded"
+          />
+          <input
+            type="text"
+            name="location"
+            placeholder="Ciudad (opcional)"
+            value={formData.location}
+            onChange={handleChange}
+            className="w-full border p-2 mb-3 rounded"
+          />
+          <textarea
+            name="body"
+            placeholder="Tu opinión"
+            value={formData.body}
+            onChange={handleChange}
+            className="w-full border p-2 mb-3 rounded"
+            rows={3}
+          />
+          <div className="flex flex-row items-center justify-center gap-2 mb-4">
+            {[1, 2, 3, 4, 5].map((star) => (
+              <Star
+                key={star}
+                size={24}
+                onClick={() => setFormData({ ...formData, rating: star })}
+                className={`cursor-pointer transition-colors ${formData.rating >= star ? "text-yellow-400 fill-yellow-400" : "text-gray-300"
+                  }`}
+              />
+            ))}
+          </div>
+          <button
+            type="submit"
+            className="w-full bg-gray-800 text-white py-2 rounded hover:bg-gray-700 transition"
+          >
+            Enviar reseña
+          </button>
+        </form>
+      </div>
+    </div>
+  );
+}
