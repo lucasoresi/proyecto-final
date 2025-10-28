@@ -13,6 +13,7 @@ import { cn } from '@/lib/utils';
 import supabase from '@/config/spabaseClient';
 import { useAuth } from './auth/AuthProvider';
 import { useNavigate } from 'react-router-dom';
+import '@/components/css/contact.css'
 
 const Contact = () => {
   const [formError, setFromError] = useState(null);
@@ -105,19 +106,19 @@ const Contact = () => {
     {
       icon: Phone,
       title: 'Teléfono',
-      details: ['+54 9 123 456-7890'],
-      action: () => window.open('tel:+5491234567890', '_self')
+      details: ['+54 9 291 416 1306'],
+      action: () => window.open('tel:+5492914161306', '_self')
     },
     {
       icon: Mail,
       title: 'Email',
-      details: ['contacto@equipopsipbbca.com'],
-      action: () => window.open('mailto:contacto@equipopsipbbca.com', '_self')
+      details: ['equipopsipbbca@gmail.com'],
+      action: () => window.open('mailto:equipopsipbbca@gmail.com', '_self')
     },
     {
       icon: Clock,
       title: 'Horarios',
-      details: ['Lunes a Viernes: 9:00 - 19:00', 'Sábados: 9:00 - 13:00']
+      details: ['Lunes a Viernes: 9:00 - 19:00', 'Viernes: 9:00 - 13:00']
     }
   ];
 
@@ -138,7 +139,7 @@ const Contact = () => {
           <Card className="gentle-shadow bg-card border-border/50">
             <CardHeader>
               <CardTitle className="text-card-foreground flex items-center">
-                <CalendarIcon className="w-5 h-5 mr-2 text-primary" />
+                <CalendarIcon className="w-5 h-5 mr-2 text-trust" />
                 Agendar Consulta
               </CardTitle>
             </CardHeader>
@@ -239,7 +240,7 @@ const Contact = () => {
                 </div>
 
                 <div className="flex flex-col sm:flex-row gap-3">
-                  <Button type="submit" className="bg-primary hover:bg-primary/90 flex-1">
+                  <Button type="submit" className="boton-submit">
                     <Send className="w-4 h-4 mr-2" />
                     Enviar Consulta
                   </Button>
@@ -247,7 +248,7 @@ const Contact = () => {
                     type="button"
                     variant="outline"
                     onClick={openWhatsApp}
-                    className="border-2 border-green-500 text-green-600 hover:bg-green-500 hover:text-white flex-1"
+                    className="boton-agenda-wp"
                   >
                     <MessageCircle className="w-4 h-4 mr-2" />
                     Agendar por WhatsApp
@@ -270,7 +271,7 @@ const Contact = () => {
                 <CardContent className="p-6">
                   <div className="flex items-start space-x-4">
                     <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center flex-shrink-0">
-                      <info.icon className="w-6 h-6 text-primary" />
+                      <info.icon className="w-6 h-6 text-trust" />
                     </div>
                     <div>
                       <h3 className="font-semibold text-card-foreground mb-2">
@@ -299,7 +300,7 @@ const Contact = () => {
                   </p>
                   <Button
                     size="sm"
-                    onClick={() => window.open('tel:+5491234567890', '_self')}
+                    onClick={() => window.open('tel:+5492914161306', '_self')}
                     className="bg-warmth hover:bg-warmth/90 text-warmth-foreground"
                   >
                     <Phone className="w-4 h-4 mr-2" />

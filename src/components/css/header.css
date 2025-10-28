@@ -5,13 +5,13 @@
   font-style: light !important;
 }
 .EP-logo img{
-    height: 40px;
-    width: 40px;
-    object-fit: cover; 
+    height: 40px !important;
+    width: 40px !important;
+    object-fit: cover !important; 
 }
 .titulo{
-    height: 35px;
-    width: 190px;
+    height: 35px !important;
+    width: 190px !important;
 }
 .boton-whatsapp button{
     margin-left: 10px !important;

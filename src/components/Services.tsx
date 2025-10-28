@@ -58,7 +58,7 @@ const Services = () => {
             <Card key={index} className="group gentle-shadow hover:shadow-lg transition-all duration-300 bg-card border-border/50">
               <CardHeader>
                 <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-4 group-hover:bg-primary/15 transition-colors">
-                  <service.icon className="w-6 h-6 text-primary" />
+                  <service.icon className="w-6 h-6 text-trust" />
                 </div>
                 <CardTitle className="text-card-foreground text-lg">
                   {service.title}

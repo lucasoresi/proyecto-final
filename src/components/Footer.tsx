@@ -1,5 +1,5 @@
 import { Heart, Instagram, Facebook, Mail, Phone } from 'lucide-react';
-
+import logo from '@/assets/ep logo-40.png'
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
@@ -17,8 +17,8 @@ const Footer = () => {
           {/* Brand Section */}
           <div>
             <div className="flex items-center space-x-2 mb-4">
-              <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
-                <span className="text-primary-foreground font-bold text-sm">EP</span>
+              <div className="w-10 h-8 flex items-center justify-center">
+                <img src={logo} alt='logo'/>
               </div>
               <span className="text-xl font-semibold">
                 Equipo de Psicología
@@ -86,11 +86,11 @@ const Footer = () => {
             <div className="space-y-3">
               <div className="flex items-center space-x-3">
                 <Phone className="w-4 h-4 text-primary" />
-                <span className="text-background/80">+54 9 123 456-7890</span>
+                <span className="text-background/80">+54 9 291 416 1306</span>
               </div>
               <div className="flex items-center space-x-3">
                 <Mail className="w-4 h-4 text-primary" />
-                <span className="text-background/80">contacto@equipopsipbbca.com</span>
+                <span className="text-background/80">equipopsipbbca@gmail.com</span>
               </div>
             </div>
 
@@ -98,7 +98,7 @@ const Footer = () => {
               <h4 className="font-medium mb-2">Horarios de atención:</h4>
               <p className="text-background/80 text-sm">
                 Lunes a Viernes: 9:00 - 19:00<br />
-                Sábados: 9:00 - 13:00
+                Viernes: 9:00 - 13:00
               </p>
             </div>
           </div>

@@ -52,6 +52,16 @@ const router = createBrowserRouter([
         ]
     },
     {
+        path:"/",
+        element:<ProtectedAdmin/>,
+        children:[
+            {
+                path:"/consultas",
+                element:<IndexConsultas/>,
+            }
+        ]
+    },
+    {
         path: "*",
         element: <NotFound/>
     }
