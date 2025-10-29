@@ -15,7 +15,6 @@ const Index = () => {
         <Services />
         <About />
         <Testimonials />
-        <TurnosAdminPublic />
         <Contact />
       </main>
       <Footer />
