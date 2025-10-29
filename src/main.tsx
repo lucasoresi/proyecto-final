@@ -1,18 +1,20 @@
 import { createRoot } from 'react-dom/client'
-import { App } from './App.tsx'
+import { App } from './App'
 import './index.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import React from 'react';
 import ReactDOM from 'react-dom/client'; 
-import Login from './components/Login.tsx';
-import ProtectedRoute from './components/auth/ProtectedRoute.tsx';
-import { AuthProvider } from './components/auth/AuthProvider.tsx';
-import Register from './components/Register.tsx';
-import { Main } from './App.tsx';
-import NotFound from './pages/NotFound.tsx';
-import IndexConsultas from './pages/IndexConsultas.tsx';
-import IndexAdmin from './pages/IndexAdmin.tsx';
-import ProtectedAdmin from './components/auth/ProtectedAdmin.tsx';
+import Login from './components/Login';
+import ProtectedRoute from './components/auth/ProtectedRoute';
+import { AuthProvider } from './components/auth/AuthProvider';
+import Register from './components/Register';
+import { Main } from './App';
+import NotFound from './pages/NotFound';
+import IndexConsultas from './pages/IndexConsultas';
+import IndexAdmin from './pages/IndexAdmin';
+import ProtectedAdmin from './components/auth/ProtectedAdmin';
+import { AuthProvider as AuthProviderAdmin } from './components/auth/AuthProviderAdmin';
+import CalendarioAdmin from './pages/CalendarioAdmin';
 
 const router = createBrowserRouter([
     {
@@ -56,6 +58,16 @@ const router = createBrowserRouter([
         element:<ProtectedAdmin/>,
         children:[
             {
+                path:"/calendario",
+                element:<CalendarioAdmin/>,
+            }
+        ]
+    },
+    {
+        path:"/",
+        element:<ProtectedAdmin/>,
+        children:[
+            {
                 path:"/consultas",
                 element:<IndexConsultas/>,
             }
@@ -68,10 +80,12 @@ const router = createBrowserRouter([
     
 ]);
 
-ReactDOM.createRoot(document.getElementById("root") as HTMLBRElement).render(
+ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
     <React.StrictMode>
         <AuthProvider>
-            <RouterProvider router={router} />
+            <AuthProviderAdmin>
+                <RouterProvider router={router} />
+            </AuthProviderAdmin>
         </AuthProvider>
     </React.StrictMode>
 );
