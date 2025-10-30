@@ -15,6 +15,7 @@ const HeaderAdmin = () => {
   const navigation = [
     { name: 'Inicio', href: '/admin' },
     { name: 'Consultas', href: '/consultas' },
+    { name: 'Calendario', href: '/calendario' },
   ];
 
     useEffect(() => {
