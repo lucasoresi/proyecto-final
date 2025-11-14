@@ -7,6 +7,7 @@ const Consultas = () => {
     const [error, setError] = useState(false);
     const [consultas, setConsultas] = useState([]);
     const [orderBy, setorderBy] = useState('date');
+    const [loading, setLoading] = useState(true);//hacer despues
 
     const handleDelete = (id) => {
         setConsultas(prevConsultas => 

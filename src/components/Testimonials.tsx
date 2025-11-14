@@ -3,7 +3,13 @@
 import { Marquee } from "@/components/magicui/marquee";
 import { cn } from "@/lib/utils";
 import { Star, Quote } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import supabase from "@/config/spabaseClient";
+import { set } from "date-fns";
+import { toast } from "sonner";
+import { useToast } from '@/hooks/use-toast';
+import { useAuth } from "./auth/AuthProvider";
+import { useNavigate } from "react-router-dom";
 
 const initialReviews = [
   {
@@ -97,32 +103,92 @@ export default function Testimonials() {
     rating: 5,
   });
   const [showForm, setShowForm] = useState(false);
+  const { toast } = useToast();
+  const auth = useAuth();
+  const navigate = useNavigate();
+
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+  useEffect(() => {
+    const fetchTestimonials = async () => {
+      const { data, error } = await supabase
+        .from('testimonials')
+        .select('*')
+        .order("id", { ascending: false });
+        
+      if (error) {
+        console.log("Error fetching testimonials:", error);
+        setReviews(null);
+      }
+      if (data) {
+        setReviews(data);
 
-  const handleSubmit = (e) => {
+      }
+      
+    } 
+    fetchTestimonials();
+        
+  },[])
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!formData.name || !formData.body) return;
+    try{
+      if(!auth.isAuthenticated){ 
+        navigate('/login');
+      }else{
+        if (!formData.name || !formData.body) return;
 
-    const initials = formData.name
-      .split(" ")
-      .map((n) => n[0])
-      .join("")
-      .slice(0, 2)
-      .toUpperCase()
+        const initials = formData.name
+          .split(" ")
+          .map((n) => n[0])
+          .join("")
+          .slice(0, 2)
+          .toUpperCase();
 
-    const newReview = {
-      ...formData, initials
-    };
-    setReviews([newReview, ...reviews]);
-    setFormData({ name: "", location: "", body: "", rating: 5 });
-    setShowForm(false);
+        const { data, error } = await supabase
+          .from('testimonials')
+          .insert([{
+            name: formData.name,
+            location: formData.location,
+            body: formData.body,
+            rating: formData.rating,
+          }])
+          .select();
+        if (error) {
+          console.log("Error submitting testimonial:", error);
+          return;
+        }
+        if (data) {
+          console.log("Testimonial submitted:", data);
+          const newReview = {
+            ...formData, initials
+          };
+
+          setReviews([newReview, ...reviews]);
+          setFormData({ name: "", location: "", body: "", rating: 5 });
+          setShowForm(false);
+          toast({
+            title: "¡Gracias por tu opinión!",
+            description: "Tu reseña ha sido enviada con éxito.",
+            duration: 3000,
+          });
+
+        }
+     }
+    } catch (error) {
+        toast({
+          title: "Error",
+          description: "Hubo un error al enviar tu opinión. Por favor, intentá nuevamente.",
+          duration: 3000,
+        });
+      return;
+    }
   };
 
-  // const firstRow = reviews.slice(0, Math.ceil(reviews.length / 2));
-  // const secondRow = reviews.slice(Math.ceil(reviews.length / 2));
+  const firstRow = reviews.slice(0, Math.ceil(reviews.length / 2));
+  const secondRow = reviews.slice(Math.ceil(reviews.length / 2));
 
   return (
     <div className="py-16 bg-gradient-to-b from-gray-50 to-white">

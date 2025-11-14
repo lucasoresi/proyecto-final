@@ -37,21 +37,25 @@ const About = () => {
             
             <div className="space-y-6 text-body text-muted-foreground">
               <p>
-                Somos un equipo de profesionales de la psicología comprometidos con el bienestar 
-                mental y emocional de nuestros pacientes. Con sede en Bahía Blanca, brindamos 
-                servicios de terapia psicológica tanto presenciales como virtuales.
+                  En Equipo PSIP creemos en una mirada integral del aprendizaje y del desarrollo humano.
               </p>
               
               <p>
-                Nuestra filosofía se basa en crear un espacio seguro, confidencial y libre de 
-                juicios donde cada persona pueda explorar sus emociones, desarrollar herramientas 
-                para enfrentar desafíos y alcanzar su máximo potencial.
+                Nuestra práctica se basa en el respeto por la singularidad de cada persona y en la convicción 
+                de que toda experiencia de aprendizaje puede potenciarse a través del acompañamiento 
+                adecuado.
               </p>
               
               <p>
-                Utilizamos enfoques terapéuticos basados en evidencia científica, adaptando 
-                nuestras intervenciones a las necesidades específicas de cada paciente para 
-                lograr resultados efectivos y duraderos.
+                Trabajamos desde una perspectiva psicopedagógica y neurocognitiva, articulando saberes de 
+                la educación, la psicología y las neurociencias. Promovemos procesos de evaluación, 
+                orientación e intervención que favorezcan el bienestar, la autonomía y la construcción de 
+                estrategias que fortalezcan los recursos personales y familiares.
+              </p>
+
+              <p>
+                Nuestro compromiso es con una práctica ética, reflexiva y colaborativa, que valore la 
+                diversidad, el trabajo interdisciplinario y el aprendizaje a lo largo de la vida.
               </p>
             </div>
 
