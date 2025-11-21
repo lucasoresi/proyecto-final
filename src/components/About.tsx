@@ -37,7 +37,9 @@ const About = () => {
             
             <div className="space-y-6 text-body text-muted-foreground">
               <p>
-                  En Equipo PSIP creemos en una mirada integral del aprendizaje y del desarrollo humano.
+                A Equipo Psip lo conforma la Dra. Maria Laura Toziano con más de 30 años de experiencia en 
+                Psicopedagogía Clinica y la Psicopedagoga Maria Eugenia Favarel, quien se distingue por su
+                vocación de servicio y profesionalismo.
               </p>
               
               <p>
@@ -47,14 +49,14 @@ const About = () => {
               </p>
               
               <p>
-                Trabajamos desde una perspectiva psicopedagógica y neurocognitiva, articulando saberes de 
-                la educación, la psicología y las neurociencias. Promovemos procesos de evaluación, 
-                orientación e intervención que favorezcan el bienestar, la autonomía y la construcción de 
+                Trabajamos desde una perspectiva psicopedagógica y neurocognitiva, integrando aportes de 
+                la educación, la psicología y las neurociencias para desarrollar procesos de evaluación, 
+                orientación e intervención que promuevan el bienestar, la autonomía y la construcción de 
                 estrategias que fortalezcan los recursos personales y familiares.
               </p>
 
               <p>
-                Nuestro compromiso es con una práctica ética, reflexiva y colaborativa, que valore la 
+                Sostenemos una práctica ética, reflexiva y colaborativa, que valora la 
                 diversidad, el trabajo interdisciplinario y el aprendizaje a lo largo de la vida.
               </p>
             </div>
@@ -102,9 +104,10 @@ const About = () => {
               Nuestra Filosofía
             </h3>
             <p className="text-body text-muted-foreground">
-              "Creemos que cada persona tiene la capacidad innata de crecer, sanar y transformarse. 
-              Nuestro rol es acompañarte en este proceso, brindándote las herramientas y el apoyo 
-              necesario para que puedas alcanzar tu bienestar integral."
+               "Equipo PSIP adopta una mirada integral del aprendizaje y respeta la singularidad de 
+               cada persona. Desde un enfoque psicopedagógico y neurocognitivo, articula educación, 
+               psicología y neurociencias para evaluar, orientar e intervenir favoreciendo bienestar y autonomía. 
+               Su práctica se basa en la ética, la colaboración y la valoración de la diversidad y el aprendizaje continuo."
             </p>
           </div>
         </div>

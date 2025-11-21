@@ -21,11 +21,12 @@ const Footer = () => {
                 <img src={logo} alt='logo'/>
               </div>
               <span className="text-xl font-semibold">
-                Equipo de Psicología
+                Equipo Psicopedagógico
               </span>
             </div>
             <p className="text-background/80 mb-6">
-              Acompañamiento profesional para tu bienestar mental y emocional en Bahía Blanca.
+              Orientamos y acompañamos  el aprendizaje para favorecer el 
+              desarrollo integral
             </p>
             
             {/* Social Links */}

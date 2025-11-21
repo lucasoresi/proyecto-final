@@ -1,5 +1,3 @@
-"use client";
-
 import { Marquee } from "@/components/magicui/marquee";
 import { cn } from "@/lib/utils";
 import { Star, Quote } from "lucide-react";
@@ -121,9 +119,10 @@ export default function Testimonials() {
       if (error) {
         console.log("Error fetching testimonials:", error);
         setReviews(null);
+        setReviews(initialReviews);
       }
       if (data) {
-        setReviews(data);
+        setReviews(data && data.length > 0 ? data : initialReviews);
 
       }
       
