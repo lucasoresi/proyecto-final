@@ -253,9 +253,9 @@ El chatbot envía al webhook:
 4. Push a la rama (`git push origin feature/AmazingFeature`)
 5. Abre un Pull Request
 
-## Licencia
+## Workflow n8n
+<img width="1522" height="560" alt="image" src="https://github.com/user-attachments/assets/2c39aa37-ceaf-41d6-8c02-1118c4b79cfb" />
 
-Este proyecto es privado y pertenece al consultorio de psicología en Bahía Blanca.
 
 ## Contacto
 
