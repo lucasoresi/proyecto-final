@@ -3,7 +3,7 @@ import supabase from "@/config/spabaseClient";
 
 interface Turno {
   id: number;
-  fecha: string; // YYYY-MM-DD  
+  fecha: string; // YYYY-MM-DD
   hora: string;  // HH:mm
   created_by?: string | null;
 }
@@ -22,7 +22,7 @@ const TurnosAdminPublic = () => {
     return `${y}-${m}-${d}`;
   }, []);
 
-  // Email del admin según tu lógica de Login
+  // Email del administrador
   const adminEmail = "equipopsipbbca@gmail.com";
 
   useEffect(() => {
@@ -53,9 +53,9 @@ const TurnosAdminPublic = () => {
     <section className="py-16">
       <div className="container mx-auto px-4 max-w-5xl">
         <div className="rounded-lg border p-6 bg-background">
-          <h2 className="text-2xl font-semibold mb-2">Turnos disponibles del Administrador</h2>
+          <h2 className="text-2xl font-semibold mb-2">Turnos disponibles</h2>
           <p className="text-sm text-muted-foreground mb-6">
-            Aquí podés ver los próximos turnos publicados por nuestro administrador.
+            Aquí podran ver los turnos publicados.
           </p>
 
           {loading && <p className="text-muted-foreground">Cargando turnos…</p>}
@@ -69,7 +69,11 @@ const TurnosAdminPublic = () => {
                 <li key={t.id} className="border rounded px-4 py-3 flex items-center justify-between">
                   <div>
                     <p className="font-medium">
-                      {t.fecha} · {t.hora}
+                      {new Date(t.fecha).toLocaleDateString("es-AR", {
+                        day: "2-digit",
+                        month: "2-digit",
+                        year: "numeric",
+                      })} · {t.hora}
                     </p>
                   </div>
                 </li>
