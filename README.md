@@ -7,6 +7,7 @@ Website profesional para consultorios de psicología en Bahía Blanca, Argentina
 Aplicación web moderna desarrollada con React y TypeScript que ofrece:
 - Página pública informativa con servicios de psicología
 - Sistema de reserva de turnos para pacientes
+- **Chatbot asistente virtual** integrado con n8n (solo para usuarios autenticados)
 - Panel de administración para gestión de consultas
 - Autenticación dual (usuarios y administradores)
 - Integración con Supabase para base de datos y autenticación
@@ -22,6 +23,8 @@ Aplicación web moderna desarrollada con React y TypeScript que ofrece:
 - **State Management**: TanStack Query (React Query)
 - **Forms**: React Hook Form + Zod validation
 - **Backend**: Supabase (Auth, Database, Storage)
+- **Chatbot**: Integración con n8n via webhook
+- **Markdown**: react-markdown + remark-gfm (para renderizar respuestas del chatbot)
 - **Animations**: Magic UI components
 
 ## Requisitos Previos
@@ -50,6 +53,8 @@ VITE_SUPABASE_URL=your_supabase_url
 VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
 VITE_ADMIN_PASSWORD=your_admin_password
 ```
+
+**Nota**: La URL del webhook de n8n está configurada directamente en `src/components/chatbot/chatbot-runtime.tsx` (línea 8). Modifícala según tu configuración de n8n.
 
 4. Iniciar el servidor de desarrollo:
 ```sh
@@ -100,12 +105,17 @@ bahia-zen-therapy/
 │   ├── components/          # Componentes reutilizables
 │   │   ├── ui/             # Componentes base de shadcn/ui
 │   │   ├── auth/           # Providers y rutas protegidas
+│   │   ├── chatbot/        # Sistema de chatbot con n8n
+│   │   │   ├── chatbot-trigger.tsx   # Botón flotante
+│   │   │   ├── chatbot-popup.tsx     # Modal del chat
+│   │   │   ├── chatbot-ui.tsx        # Interfaz del chat
+│   │   │   └── chatbot-runtime.tsx   # Lógica + integración n8n
 │   │   ├── magicui/        # Componentes animados
 │   │   └── css/            # Estilos específicos
 │   ├── pages/              # Páginas de la aplicación
 │   │   ├── Index.tsx       # Página pública
-│   │   ├── IndexLogin.tsx  # Dashboard de usuario
-│   │   ├── IndexAdmin.tsx  # Dashboard de admin
+│   │   ├── IndexLogin.tsx  # Dashboard de usuario (incluye chatbot)
+│   │   ├── IndexAdmin.tsx  # Dashboard de admin (incluye chatbot)
 │   │   └── CalendarioAdmin.tsx  # Gestión de calendario
 │   ├── config/             # Configuración (Supabase)
 │   ├── hooks/              # Custom hooks
@@ -128,6 +138,12 @@ bahia-zen-therapy/
 ## Características Principales
 
 - **Autenticación Dual**: Sistema separado para usuarios regulares y administradores
+- **Chatbot Asistente Virtual**:
+  - Integrado con n8n via webhook
+  - Solo visible para usuarios autenticados
+  - Soporte para markdown (tablas, listas, código)
+  - Mantiene contexto de conversación con sessionId único
+  - Logging detallado para debugging
 - **Gestión de Turnos**: Los usuarios pueden solicitar turnos con selector de fecha
 - **Panel Administrativo**: Gestión completa de consultas y calendario
 - **Testimonios Dinámicos**: Sistema de testimonios con animación marquee
@@ -176,6 +192,58 @@ El proyecto requiere las siguientes tablas en Supabase:
 - `testimonials` - Testimonios de clientes
 
 Configura las políticas de seguridad (RLS) según los requisitos de tu aplicación.
+
+## Configuración del Chatbot con n8n
+
+El chatbot está integrado con n8n mediante webhooks. Para configurarlo:
+
+### 1. Configurar el Webhook en n8n
+
+1. Crea un workflow en n8n con un nodo **Webhook**
+2. Configura el webhook para recibir peticiones POST
+3. Asegúrate de que tu webhook devuelva una respuesta en formato JSON:
+   ```json
+   {
+     "response": "La respuesta del asistente aquí"
+   }
+   ```
+   También soporta los campos: `message`, `output`, o `text`
+
+4. **Importante**: Configura CORS en el nodo Webhook o Response:
+   ```
+   Access-Control-Allow-Origin: *
+   Access-Control-Allow-Methods: POST, OPTIONS
+   Access-Control-Allow-Headers: Content-Type
+   ```
+
+### 2. Actualizar la URL del Webhook
+
+Edita el archivo `src/components/chatbot/chatbot-runtime.tsx` (línea 8):
+```typescript
+const N8N_WEBHOOK_URL = 'https://tu-instancia.n8n.cloud/webhook/input';
+```
+
+### 3. Formato de Petición
+
+El chatbot envía al webhook:
+```json
+{
+  "message": "texto del usuario",
+  "sessionId": "session_unique_id",
+  "history": [
+    {"role": "user", "content": "Hola"},
+    {"role": "assistant", "content": "Hola, ¿en qué puedo ayudarte?"}
+  ]
+}
+```
+
+### 4. Características del Chatbot
+
+- **SessionId único**: Cada conversación tiene un ID único para mantener contexto
+- **Historial**: Se envía el historial completo de mensajes en cada petición
+- **Markdown**: Las respuestas soportan markdown (tablas, listas, código, etc.)
+- **Solo usuarios autenticados**: El chatbot solo aparece después de login
+- **Debugging**: Logs detallados en consola del navegador (📤 📥 ✅ ❌)
 
 ## Contribuir
 

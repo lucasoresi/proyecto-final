@@ -6,6 +6,7 @@ import Testimonials from '@/components/Testimonials';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 import TurnosAdminPublic from '@/components/TurnosAdminPublic';
+import { ChatbotTrigger } from '@/components/chatbot/chatbot-trigger';
 
 const IndexLoging = () => {
 
@@ -21,6 +22,7 @@ const IndexLoging = () => {
         <Contact />
       </main>
       <Footer />
+      <ChatbotTrigger />
     </div>
   );
 };
