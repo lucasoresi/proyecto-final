@@ -11,6 +11,9 @@ interface Turno {
   created_by?: string | null;
 }
 
+// Email del administrador
+const adminEmail = "equipopsipbbca@gmail.com";
+
 const CalendarioAdmin = () => {
   const [fecha, setFecha] = useState<Date | undefined>(new Date());
   const [hora, setHora] = useState<string>("");
@@ -46,7 +49,7 @@ const CalendarioAdmin = () => {
     e.preventDefault();
     if (!fechaISO || !hora) return;
     setLoading(true);
-    const created_by = localStorage.getItem("userEmail") ?? null;
+    const created_by = adminEmail;
     const { error } = await supabase.from("turnos").insert({
       fecha: fechaISO,
       hora,
