@@ -9,6 +9,7 @@ import { useToast } from '@/hooks/use-toast';
 import { useAuth } from "./auth/AuthProvider";
 import { useNavigate } from "react-router-dom";
 
+
 const initialReviews = [
   {
     name: "María González",
@@ -190,7 +191,7 @@ export default function Testimonials() {
   const secondRow = reviews.slice(Math.ceil(reviews.length / 2));
 
   return (
-    <div className="py-16 bg-gradient-to-b from-gray-50 to-white">
+    <div id="testimonials" className="py-16 bg-gradient-to-b from-gray-50 to-white">
 
       <h2 className="text-center text-3xl font-bold text-gray-800 mb-10">
         Opiniones de Nuestros Clientes

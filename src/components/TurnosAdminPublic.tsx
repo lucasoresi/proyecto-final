@@ -3,7 +3,7 @@ import supabase from "@/config/spabaseClient";
 
 interface Turno {
   id: number;
-  fecha: string; // YYYY-MM-DD
+  fecha: string; // YYYY-MM-DD  
   hora: string;  // HH:mm
   created_by?: string | null;
 }
