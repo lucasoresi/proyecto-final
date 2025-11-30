@@ -54,7 +54,7 @@ npm run dev
 
 El servidor se iniciará en `http://localhost:8080`
 
-No el backend anda en la nube, asi que no se tiene que hacer nada mas que esos comandos para andar
+El backend anda en la nube, asi que no se tiene que hacer nada mas que esos comandos para andar
 
 
 ## Credenciales de Acceso
