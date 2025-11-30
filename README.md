@@ -37,53 +37,25 @@ Aplicación web moderna desarrollada con React y TypeScript que ofrece:
 
 1. Clonar el repositorio:
 ```sh
-git clone <YOUR_GIT_URL>
-cd bahia-zen-therapy
+git clone https://github.com/lucasoresi/proyecto-final
+cd proyecto-final
 ```
 
 2. Instalar dependencias:
 ```sh
 npm install
+npm install react-markdown remark-gfm
 ```
 
-3. Configurar variables de entorno:
-Crear un archivo `.env` en la raíz del proyecto con las siguientes variables:
-```env
-VITE_SUPABASE_URL=your_supabase_url
-VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
-VITE_ADMIN_PASSWORD=your_admin_password
-```
-
-**Nota**: La URL del webhook de n8n está configurada directamente en `src/components/chatbot/chatbot-runtime.tsx` (línea 8). Modifícala según tu configuración de n8n.
-
-4. Iniciar el servidor de desarrollo:
+3. Iniciar el servidor de desarrollo:
 ```sh
 npm run dev
 ```
 
 El servidor se iniciará en `http://localhost:8080`
 
-## Comandos Disponibles
+No el backend anda en la nube, asi que no se tiene que hacer nada mas que esos comandos para andar
 
-```sh
-# Instalar dependencias
-npm install
-
-# Iniciar servidor de desarrollo (puerto 8080)
-npm run dev
-
-# Compilar para producción
-npm run build
-
-# Compilar en modo desarrollo
-npm run build:dev
-
-# Ejecutar linter
-npm run lint
-
-# Preview de build de producción
-npm run preview
-```
 
 ## Credenciales de Acceso
 
@@ -152,6 +124,27 @@ bahia-zen-therapy/
 - **Diseño Responsive**: Optimizado para todos los dispositivos
 - **SEO Optimizado**: Meta tags y HTML semántico
 
+## Comandos Disponibles
+
+```sh
+# Instalar dependencias
+npm install
+
+# Iniciar servidor de desarrollo (puerto 8080)
+npm run dev
+
+# Compilar para producción
+npm run build
+
+# Compilar en modo desarrollo
+npm run build:dev
+
+# Ejecutar linter
+npm run lint
+
+# Preview de build de producción
+npm run preview
+```
 ## Desarrollo con Lovable
 
 Este proyecto fue creado con [Lovable.dev](https://lovable.dev/projects/bdce1f43-33e3-4273-9b9e-31611168f47d).
