@@ -70,12 +70,12 @@ const CalendarioAdmin = () => {
     const { error } = await supabase.from("turnos").delete().eq("id", id);
     if (!error) await cargarTurnos();
   };
-
+ 
   return (
     <div className="min-h-screen">
       <HeaderAdmin />
       <main className="container mx-auto px-4 pt-28 pb-12 max-w-4xl">
-        <h1 className="text-2xl font-semibold mb-6">Calendario de Turnos</h1>
+        <h1 className="text-2xl font-semibold mb-6">Calendario de Grupos de estudio</h1>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div>
             <Calendar

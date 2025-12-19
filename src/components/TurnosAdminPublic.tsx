@@ -53,9 +53,9 @@ const TurnosAdminPublic = () => {
     <section className="py-16">
       <div className="container mx-auto px-4 max-w-5xl">
         <div className="rounded-lg border p-6 bg-background">
-          <h2 className="text-2xl font-semibold mb-2">Turnos disponibles</h2>
+          <h2 className="text-2xl font-semibold mb-2">Grupos de estudio</h2>
           <p className="text-sm text-muted-foreground mb-6">
-            Aquí podran ver los turnos publicados.
+            Fechas disponibles.
           </p>
 
           {loading && <p className="text-muted-foreground">Cargando turnos…</p>}

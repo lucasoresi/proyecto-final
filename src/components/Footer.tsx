@@ -99,7 +99,7 @@ const Footer = () => {
               <h4 className="font-medium mb-2">Horarios de atención:</h4>
               <p className="text-background/80 text-sm">
                 Lunes a Viernes: 9:00 - 19:00<br />
-                Viernes: 9:00 - 13:00
+              
               </p>
             </div>
           </div>

@@ -27,11 +27,11 @@ const TarjetaConsulta = ({consulta, onDelete}) =>{
    }
     return(
         <div className="consulta-tarjeta">
-            <h1>{consulta.name}</h1>
-            <p>{consulta.message}</p>
-            <p>{consulta.email}</p>
-            <p>{consulta.phone}</p>
-            <p>{consulta.date}</p>
+            <h1>Nombre: {consulta.name}</h1>
+            <p>Modalidad: {consulta.modalidad}</p>
+            <p>Email: {consulta.email}</p>
+            <p>Teléfono: {consulta.phone}</p>
+            <p>Fecha de solicitud: {consulta.date}</p>
             <div className="consulta-delete">
                 <button onClick={handleDelete}>Eliminar</button>
             </div>

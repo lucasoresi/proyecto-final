@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { format } from 'date-fns';
-import { es } from 'date-fns/locale';
+import { es, fr } from 'date-fns/locale';
 import { MapPin, Phone, Mail, MessageCircle, Clock, Send, CalendarIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -20,22 +20,24 @@ const Contact = () => {
   const { toast } = useToast();
   const auth = useAuth();
   const navigate = useNavigate();
+  type ModalidadType = '' | 'Presencial' | 'Virtual';
   const [formData, setFormData] = useState({
     name: '', 
     email: '',
     phone: '',
-    message: '',
+    modalidad: '' as ModalidadType,
     date: undefined as Date | undefined
   });
 
 
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
     });
   };
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -44,7 +46,7 @@ const Contact = () => {
     }else{
             if (!formData.name ||
             !formData.email ||
-            !formData.message ||
+            !formData.modalidad ||
             !formData.date ||
             !formData.phone) {
               setFromError(true)
@@ -59,7 +61,7 @@ const Contact = () => {
               .insert([{name: formData.name,
               email: formData.email,
               phone: formData.phone,
-              message: formData.message,
+              modalidad: formData.modalidad,
               date: formData.date.toISOString().split('T')[0] 
             }])
               .select()
@@ -78,7 +80,7 @@ const Contact = () => {
               name: '',
               email: '',
               phone: '',
-              message: '',
+              modalidad: '' as ModalidadType,
               date: undefined
             });
           } 
@@ -118,7 +120,7 @@ const Contact = () => {
     {
       icon: Clock,
       title: 'Horarios',
-      details: ['Lunes a Viernes: 9:00 - 19:00', 'Viernes: 9:00 - 13:00']
+      details: ['Lunes a Viernes: 9:00 - 19:00']
     }
   ];
 
@@ -127,10 +129,10 @@ const Contact = () => {
       <div className="container-content">
         <div className="text-center mb-16">
           <h2 className="text-heading text-foreground mb-4">
-            Contáctanos
+            Solicitar turno
           </h2>
           <p className="text-subheading text-muted-foreground max-w-3xl mx-auto">
-            Estamos aquí para acompañarte. Agenda tu consulta o escríbenos para cualquier consulta
+            A la brevedad nos pondremos en contacto para la coordinación del turno.
           </p>
         </div>
 
@@ -225,24 +227,26 @@ const Contact = () => {
 
                 <div>
                   <label htmlFor="message" className="block text-sm font-medium text-card-foreground mb-2">
-                    Mensaje *
+                    Seleciona presencial o virtual
                   </label>
-                  <Textarea
-                    id="message"
-                    name="message"
-                    required
-                    value={formData.message}
+                  <select
+                    id="modalidad"
+                    name="modalidad"
+                    className="w-full border rounded px-3 py-2 bg-background"
+                    value={formData.modalidad}
                     onChange={handleInputChange}
-                    placeholder="Cuéntanos cómo podemos ayudarte..."
-                    rows={4}
-                    className="bg-background"
-                  />
+                    required
+                  >
+                    <option value="" disabled>Selecciona una opción</option>
+                    <option value="presencial">Presencial</option>
+                    <option value="virtual">Virtual</option>
+                  </select>
                 </div>
 
                 <div className="flex flex-col sm:flex-row gap-3">
                   <Button type="submit" className="boton-submit">
                     <Send className="w-4 h-4 mr-2" />
-                    Enviar Consulta
+                    Solicitar turno
                   </Button>
                   <Button
                     type="button"
@@ -251,7 +255,7 @@ const Contact = () => {
                     className="boton-agenda-wp"
                   >
                     <MessageCircle className="w-4 h-4 mr-2" />
-                    Agendar por WhatsApp
+                    Consulta por WhatsApp
                   </Button>
                 </div>
               </form>
@@ -288,27 +292,7 @@ const Contact = () => {
               </Card>
             ))}
 
-            {/* Emergency Contact */}
-            <Card className="gentle-shadow bg-warmth/10 border-warmth/30">
-              <CardContent className="p-6">
-                <div className="text-center">
-                  <h3 className="font-semibold text-warmth-foreground mb-2">
-                    ¿Necesitas ayuda urgente?
-                  </h3>
-                  <p className="text-small text-muted-foreground mb-4">
-                    Si estás atravesando una crisis, no dudes en contactarnos
-                  </p>
-                  <Button
-                    size="sm"
-                    onClick={() => window.open('tel:+5492914161306', '_self')}
-                    className="bg-warmth hover:bg-warmth/90 text-warmth-foreground"
-                  >
-                    <Phone className="w-4 h-4 mr-2" />
-                    Llamar Ahora
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
+          
           </div>
         </div>
       </div>

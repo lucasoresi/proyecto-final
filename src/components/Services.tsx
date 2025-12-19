@@ -6,20 +6,20 @@ const Services = () => {
     {
       icon: BookOpenText,
       title: 'Diagnósticos Psicopedagógicos',
-      description: 'Orientado a comprender el modo en que cada persona aprende, sus fortalezas, desafíos y particularidades. A través de una evaluacion rigurossa, que incluye:',
-      features: ['Entrevistas', 'Pruevas estandarizadas', 'Observaciones clínicas','Informe psicopedagógico']
+      description: 'Orientado a comprender el modo en que cada persona aprende, sus fortalezas y desafíos, a través de una evaluación rigurosa, que incluye:',
+      features: ['Entrevistas', 'Pruebas estandarizadas', 'Observaciones clínicas','Informe psicopedagógico']
     },
     {
       icon: SquarePen,
       title: 'Tratamientos Psicopedagógicos',
       description: 'Desarrollado con intervenciones personalizadas, orientadas a fortalecer los procesos de aprendizaje y promover el desarrollo integral: ',
-      features: ['Potencia el aprendizaje', 'Favorece la autonomia', 'Interviene en diferentes contextos']
+      features: ['Potencia el aprendizaje', 'Favorece la autonomía', 'Interviene en diferentes contextos']
     },
     {
       icon: Brain,
       title: 'Evaluaciones Neurocognitivas',
       description: 'Es una "muestra" de la cognición del individuo recabada bajo condiciones controladas. Cuenta con diferentes fuentes de datos:',
-      features: ['Entrevista exhaustiva', 'Demanda del paciente y/o familiar', 'Pruebas neuropsicologicas' ]
+      features: ['Entrevista exhaustiva', 'Demanda del paciente y/o familiar', 'Pruebas neuropsicológicas' ]
     },
     {
       icon: LibraryBig,

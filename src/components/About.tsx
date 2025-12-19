@@ -1,6 +1,6 @@
 import { Award, BookOpen, Users, Heart } from 'lucide-react';
 import psychologistPortrait from '@/assets/psychologist-portrait.jpg';
-
+import laura from '@/assets/foto_laura.png';
 const About = () => {
   const credentials = [
     {
@@ -11,7 +11,7 @@ const About = () => {
     {
       icon: BookOpen,
       title: '+30 Años de Experiencia',
-      description: 'En Psicopedagogía y en docencia universitaria'
+      description: 'En Psicopedagogía clínica y en Docencia universitaria'
     },
     {
       icon: Users,
@@ -37,8 +37,8 @@ const About = () => {
             
             <div className="space-y-6 text-body text-muted-foreground">
               <p>
-                A Equipo Psip lo conforma la Dra. Maria Laura Toziano con más de 30 años de experiencia en 
-                Psicopedagogía Clinica y la Psicopedagoga Maria Eugenia Favarel, quien se distingue por su
+                A Equipo Psip lo conforma la Dra. María Laura Toziano con más de 30 años de experiencia en 
+                Psicopedagogía Clínica y la Psicopedagoga María Eugenia Favarel, quien se distingue por su
                 vocación de servicio y profesionalismo.
               </p>
               
@@ -85,7 +85,7 @@ const About = () => {
           <div className="relative">
             <div className="relative z-10">
               <img
-                src={psychologistPortrait}
+                src={laura}
                 alt="Equipo profesional de psicología"
                 className="w-full max-w-md mx-auto rounded-2xl gentle-shadow"
               />
@@ -106,7 +106,7 @@ const About = () => {
             <p className="text-body text-muted-foreground">
                "Equipo PSIP adopta una mirada integral del aprendizaje y respeta la singularidad de 
                cada persona. Desde un enfoque psicopedagógico y neurocognitivo, articula educación, 
-               psicología y neurociencias para evaluar, orientar e intervenir favoreciendo bienestar y autonomía. 
+               psicología y neurociencias para evaluar, orientar e intervenir en el bienestar y desarrollo de la autonomía. 
                Su práctica se basa en la ética, la colaboración y la valoración de la diversidad y el aprendizaje continuo."
             </p>
           </div>
