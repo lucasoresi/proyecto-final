@@ -1,0 +1,21 @@
+.boton-submit{
+    background-color: #925ea2 !important;   
+    flex: 1 !important;                     
+    transition: background-color 0.2s ease !important;  
+}
+.boton-submit:hover{
+    background-color: #7e5a87 !important; 
+}
+.boton-agenda-wp{
+    border-width: 2px !important;          
+    border-color: #80a2b3 !important;      
+    color: #80a2b3 !important;          
+    flex: 1 !important;                     
+    transition: background-color 0.2s ease, color 0.2s ease !important; 
+
+}
+
+.boton-agenda-wp:hover{
+    background-color: #80a2b3 !important;  
+    color: #ffffff !important; 
+}

@@ -1,0 +1,213 @@
+{
+  "info": {
+    "name": "Psico Backend",
+    "_postman_id": "psico-backend-collection",
+    "description": "Colección con endpoints básicos para el backend (rutas reales disponibles: usuarios, testimonials, turnos, agendar_consultas, services opcional).",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Health",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/health"
+      }
+    },
+    {
+      "name": "Profile (protegido)",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{authToken}}"
+          }
+        ],
+        "url": "{{baseUrl}}/api/profile"
+      }
+    },
+    {
+      "name": "Usuarios - List",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/api/usuarios"
+      }
+    },
+    {
+      "name": "Usuarios - Get by id",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/api/usuarios/id_usuario"
+      }
+    },
+    {
+      "name": "Usuarios - Search by email",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/api/usuarios?email=email_a_buscar"
+      }
+    },
+    {
+      "name": "Usuarios - Create",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"nuevo@ejemplo.com\",\n  \"name\": \"Nuevo Usuario\",\n  \"password\": \"secret\"\n}"
+        },
+        "url": "{{baseUrl}}/api/usuarios"
+      }
+    },
+    {
+      "name": "Usuarios - Delete",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": "{{baseUrl}}/api/usuarios/id_a_borrar"
+      }
+    },
+    {
+      "name": "Testimonials - List",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/api/testimonials"
+      }
+    },
+    {
+      "name": "Testimonials - Get by id",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/api/testimonials/14"
+      }
+    },
+    {
+      "name": "Testimonials - Create",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Laura\",\n  \"location\": \"Bahia blanca\",\n  \"body\": \"Muy profesionales\",\n  \"rating\": 5\n}"
+        },
+        "url": "{{baseUrl}}/api/testimonials"
+      }
+    },
+    {
+      "name": "Testimonials - Delete",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": "{{baseUrl}}/api/testimonials/14"
+      }
+    },
+    {
+      "name": "Agendar_consultas - List",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/api/agendar_consultas"
+      }
+    },
+    {
+      "name": "Agendar_consultas - Get by id",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/api/agendar_consultas/21"
+      }
+    },
+    {
+      "name": "Agendar_consultas - Create",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Juan\",\n  \"email\": \"juan@example.com\",\n  \"phone\": 2912312313,\n  \"date\": \"2025-12-23\",\n  \"modalidad\": \"presencial\"\n}"
+        },
+        "url": "{{baseUrl}}/api/agendar_consultas"
+      }
+    },
+    {
+      "name": "Agendar_consultas - Delete",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": "{{baseUrl}}/api/agendar_consultas/21"
+      }
+    },
+    {
+      "name": "Turnos - List",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/api/turnos"
+      }
+    },
+    {
+      "name": "Turnos - Get by id",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/api/turnos/15"
+      }
+    },
+    {
+      "name": "Turnos - Create",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"fecha\": \"2026-01-24\",\n  \"hora\": \"15:00:00\",\n  \"created_by\": \"example@gmail.com\"\n}"
+        },
+        "url": "{{baseUrl}}/api/turnos"
+      }
+    },
+    {
+      "name": "Turnos - Delete",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": "{{baseUrl}}/api/turnos/15"
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:4000"
+    },
+    {
+      "key": "authToken",
+      "value": ""
+    }
+  ]
+}
