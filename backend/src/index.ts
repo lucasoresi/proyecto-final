@@ -1,7 +1,6 @@
 import 'dotenv/config';
 import express from 'express';
 import { Request, Response } from "express";
-import { RequestHandler } from 'express';
 import helmet from 'helmet';
 import cors from 'cors';
 import morgan from 'morgan';
