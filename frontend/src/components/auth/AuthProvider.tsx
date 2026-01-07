@@ -24,7 +24,7 @@ export function AuthProvider({ children }: Props) {
                 if (resp.ok) {
                     const { user } = await resp.json();
                     setIsAuthenticated(true);
-                    localStorage.setItem("userName", user?.email ?? "");
+                    localStorage.setItem("userName", user?.email ?? user?.email ?? "");
                 } else {
                     setIsAuthenticated(false);
                     localStorage.removeItem("userName");
@@ -57,7 +57,7 @@ export function AuthProvider({ children }: Props) {
     };
 
     if (loading) {
-        return null; 
+        return <div>Cargando...</div>; 
     }
 
 

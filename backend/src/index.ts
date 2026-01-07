@@ -58,7 +58,7 @@ const csrfMiddleware = csurf({
 
 app.use((req: Request, res: Response, next: any) => {
   const publicPaths = [
-    '/api/usuarios',
+    // '/api/usuarios',
     '/api/auth/login',
     '/api/auth/logout',
     '/health',

@@ -1,9 +1,7 @@
 import { useState } from "react";
 import "./../components/css/register.css";
 import { useNavigate } from "react-router-dom";
-import "@/config/spabaseClient";
 import { toast } from "@/components/ui/use-toast";
-import { useAuth } from "@/components/auth/useAuth";
 
 const Register = () => {
     const [email, setEmail] = useState("");
@@ -13,7 +11,6 @@ const Register = () => {
     const [errorExist, setErrorExist] = useState(false);
 
     const navigate = useNavigate();
-    const { setIsAuthenticated } = useAuth();
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -22,11 +19,14 @@ const Register = () => {
 
         if (!name || !email || !password) {
             setError(true);
+            toast({
+                title: "Datos incompletos",
+                description: "Completá todos los campos.",
+            });
             return;
         }
 
-            const strongPassword = /(?=.*[A-Za-z])(?=.*\d)/.test(password);
-
+        const strongPassword = /(?=.*[A-Za-z])(?=.*\d)/.test(password);
         if (password.length < 8 || !strongPassword) {
             setError(true);
             toast({
@@ -35,44 +35,59 @@ const Register = () => {
             });
             return;
         }
-
-
         try {
-            const tokenResp = await fetch('/api/auth/csrf-token', { credentials: 'include' });
-            const tokenBody = await tokenResp.json().catch(() => null);
-            const csrf = tokenBody?.csrfToken;
+            const tokenResp = await fetch('http://localhost:4000/api/auth/csrf-token', { credentials: 'include' });
+            const tokenBody = await tokenResp.json();
+            const csrfToken = tokenBody?.csrfToken;
 
-            const resp = await fetch('/api/usuarios', {
+            if (!csrfToken) {
+                toast({
+                title: "Error",
+                description: "No se pudo obtener el token de seguridad.",
+                });
+                return;
+            }
+            const resp = await fetch('http://localhost:4000/api/usuarios', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json', 'X-CSRF-Token': csrf || '' },
+                headers: { 
+                    'Content-Type': 'application/json', 
+                    'X-CSRF-Token': csrfToken,
+                },
                 credentials: 'include',
                 body: JSON.stringify({ email, password, name }),
             });
 
             if (!resp.ok) {
                 const err = await resp.json().catch(() => null);
-                setError(true);
-                toast({ title: 'Error', description: err?.error || 'Hubo un error al crear el usuario.' });
-                return;
-            }
 
-            const created = await resp.json();
-            const { email: createdEmail, name: createdName } = created || {};
-            localStorage.setItem('userName', createdName || '');
+                if (err?.error?.toLowerCase()?.includes("registrado")) {
+                    setErrorExist(true);
+                    toast({
+                        title: "Email existente",
+                        description: "Este email ya está registrado.",
+                    });
+                    } else {
+                        toast({
+                            title: "Error",
+                            description: err?.error || "No se pudo crear el usuario.",
+                        });
+                    }
+                    return;
+                }
+                // exito-> ir a login
+                toast({
+                    title: "Registro exitoso",
+                    description: "Tu cuenta fue creada. Iniciá sesión.",
+                });
 
-            if (!createdEmail) {
-                setError(true);
-                toast({ title: 'Error', description: 'Hubo un error al iniciar sesión.' });
-                return;
-            }
-
-            setError(false);
-            setIsAuthenticated(true);
-            navigate('/main');
-            toast({ title: 'Éxito', description: 'Te has registrado correctamente.' });
-        } catch (e) {
-            toast({ title: 'Error', description: 'No se pudo completar el registro.' });
-        }
+                navigate("/login");
+                } catch (err) {
+                console.error(err);
+                toast({
+                    title: "Error",
+                    description: "No se pudo completar el registro.",
+                });
+                }
     };
 
     return (

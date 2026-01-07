@@ -71,7 +71,11 @@ router.get("/:id", async (req: Request, res: Response) => {
 // Crear usuario
 const registerSchema = z.object({
   email: z.string().email(),
-  name: z.string().min(1).max(100).optional(),
+  name: z
+  .string()
+  .max(100)
+  .optional()
+  .transform(v => v?.trim() === '' ? undefined : v),
   password: z.string().min(8),
   authUserId: z.string().optional(),
 });
