@@ -69,11 +69,20 @@ const TurnosAdminPublic = () => {
                 <li key={t.id} className="border rounded px-4 py-3 flex items-center justify-between">
                   <div>
                     <p className="font-medium">
-                      {new Date(t.fecha).toLocaleDateString("es-AR", {
-                        day: "2-digit",
-                        month: "2-digit",
-                        year: "numeric",
-                      })} · {t.hora}
+                      {(() => {
+                        const parts = t.fecha.split("-");
+                        if (parts.length === 3) {
+                          const y = Number(parts[0]);
+                          const m = Number(parts[1]) - 1;
+                          const d = Number(parts[2]);
+                          return new Date(y, m, d).toLocaleDateString("es-AR", {
+                            day: "2-digit",
+                            month: "2-digit",
+                            year: "numeric",
+                          });
+                        }
+                        return t.fecha;
+                      })()} · {t.hora}
                     </p>
                   </div>
                 </li>
