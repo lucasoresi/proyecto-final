@@ -6,11 +6,15 @@ import supabase from '@/config/spabaseClient';
 import logo from '@/assets/ep logo-40.png';
 import titulo from '@/assets/titulo.png';
 import '@/components/css/header.css';
+import { useAuth } from '@/components/auth/useAuth';
+import { useAuthAdmin } from '@/components/auth/useAuthAdmin';
 
 const HeaderAdmin = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
   const [userName, setUserName] = useState<string | null>(null);
+  const auth = useAuth();
+  const authAdmin = useAuthAdmin();
   
   const navigation = [
     { name: 'Inicio', href: '/admin' },
@@ -56,6 +60,16 @@ const HeaderAdmin = () => {
               Bienvenido {userName ?? 'Usuario'}
             </button>
           </div>
+            <button
+              onClick={async () => {
+                await auth.logout();
+                authAdmin.setIsAuthenticatedAdmin(false);
+                navigate('/');
+              }}
+              className="text-body text-muted-foreground hover:text-foreground transition-colors duration-200"
+            >
+              Cerrar sesión
+            </button>
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             {navigation.map((item) => (

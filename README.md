@@ -69,34 +69,8 @@ cd backend
 npm install
 ```
 
-#### b) Configurar variables de entorno
 
-Crea un archivo `.env` en la carpeta `backend/`:
-
-```env
-# Supabase
-SUPABASE_URL=https://ovyhrjtqumfwvhldaqha.supabase.co
-SUPABASE_SERVICE_KEY=tu_service_role_key_aqui
-
-# Servidor
-PORT=4000
-FRONTEND_URL=http://localhost:8080
-
-# Autenticación
-JWT_SECRET=tu_secreto_jwt_seguro_aqui
-
-# Entorno
-NODE_ENV=development
-
-# Seguridad (opcional)
-LOCKOUT_MAX_ATTEMPTS=5
-LOCKOUT_DURATION_MIN=15
-DISABLE_DEV_LOGIN=false
-```
-
-**Importante:** Reemplaza `tu_service_role_key_aqui` y `tu_secreto_jwt_seguro_aqui` con valores reales.
-
-#### c) Iniciar el servidor backend
+#### b) Iniciar el servidor backend
 ```sh
 npm run dev
 ```
@@ -113,16 +87,7 @@ cd frontend
 npm install
 ```
 
-#### b) Variables de entorno (opcional)
-
-El frontend ya tiene configurado el archivo `.env` con las credenciales de Supabase. Si necesitas modificarlas, edita `frontend/.env`:
-
-```env
-VITE_SUPABASE_URL=https://ovyhrjtqumfwvhldaqha.supabase.co
-VITE_SUPABASE_ANON_KEY=tu_anon_key_aqui
-```
-
-#### c) Iniciar el servidor frontend
+#### b) Iniciar el servidor frontend
 ```sh
 npm run dev
 ```
@@ -305,32 +270,6 @@ El proyecto implementa dos sistemas de autenticación separados:
 - **Sanitización:** XSS protection en todos los inputs
 - **CORS:** Restringido a `FRONTEND_URL`
 
-## Configuración del Backend
-
-### Variables de Entorno
-
-El backend requiere un archivo `.env` en la carpeta `backend/` con las siguientes variables:
-
-```env
-# === Supabase ===
-SUPABASE_URL=https://tu-proyecto.supabase.co
-SUPABASE_SERVICE_KEY=eyJhbGciOi...    # Service role key (admin)
-
-# === Servidor ===
-PORT=4000                              # Puerto del backend
-FRONTEND_URL=http://localhost:8080     # URL del frontend para CORS
-
-# === Autenticación ===
-JWT_SECRET=tu_secreto_super_seguro     # Secret para firmar JWT
-
-# === Entorno ===
-NODE_ENV=development                   # development | production
-
-# === Seguridad (opcional) ===
-LOCKOUT_MAX_ATTEMPTS=5                 # Intentos de login antes de bloqueo
-LOCKOUT_DURATION_MIN=15                # Minutos de bloqueo de cuenta
-DISABLE_DEV_LOGIN=false                # Desactivar login en producción
-```
 
 ### Tablas de Supabase Requeridas
 
